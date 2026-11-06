@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.1" width="1112" height="151" viewBox="0 0 1112 151" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="fadeRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff5050" stop-opacity="0.78"/><stop offset="100%" stop-color="#ff5050" stop-opacity="0"/></linearGradient></defs>
+<rect x="0" y="0" width="1112" height="151" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="8.00" y="20.00" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="8.2px" font-weight="700" fill="#222">chr14 (q12)</text>
+<rect x="168" y="8" width="922" height="20" fill="#ffffff" stroke="#222222" stroke-width="0.9" rx="4" ry="4"/>
+<rect x="172.00" y="8.60" width="30.74" height="18.80" fill="#d8d8d8" stroke="#d8d8d8" stroke-width="0"/>
+<text x="187.37" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">p13</text>
+<rect x="202.74" y="8.60" width="37.57" height="18.80" fill="#d8d8d8" stroke="#d8d8d8" stroke-width="0"/>
+<text x="221.52" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">p12</text>
+<rect x="240.31" y="8.60" width="69.16" height="18.80" fill="#d8d8d8" stroke="#d8d8d8" stroke-width="0"/>
+<text x="274.89" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">p11.2</text>
+<rect x="327.40" y="8.60" width="50.38" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="352.59" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q11.2</text>
+<rect x="377.78" y="8.60" width="75.14" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="415.35" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q12</text>
+<rect x="452.92" y="8.60" width="16.22" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="461.03" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q13.1</text>
+<rect x="469.14" y="8.60" width="11.10" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<rect x="480.24" y="8.60" width="11.10" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="491.34" y="8.60" width="47.82" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="515.25" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q21.1</text>
+<rect x="539.16" y="8.60" width="31.59" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="554.95" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q21.2</text>
+<rect x="570.75" y="8.60" width="31.59" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="586.55" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q21.3</text>
+<rect x="602.34" y="8.60" width="27.32" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="616.01" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q22.1</text>
+<rect x="629.67" y="8.60" width="11.95" height="18.80" fill="#c9c9c9" stroke="#c9c9c9" stroke-width="0"/>
+<rect x="641.62" y="8.60" width="22.20" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="652.72" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q22.3</text>
+<rect x="663.82" y="8.60" width="34.15" height="18.80" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="0"/>
+<text x="680.90" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q23.1</text>
+<rect x="697.98" y="8.60" width="23.05" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="709.50" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q23.2</text>
+<rect x="721.03" y="8.60" width="26.47" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<text x="734.26" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q23.3</text>
+<rect x="747.50" y="8.60" width="20.49" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="757.75" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q24.1</text>
+<rect x="767.99" y="8.60" width="29.88" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<text x="782.93" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q24.2</text>
+<rect x="797.88" y="8.60" width="46.96" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="821.36" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q24.3</text>
+<rect x="844.84" y="8.60" width="36.72" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="863.20" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q31.1</text>
+<rect x="881.55" y="8.60" width="11.10" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="892.66" y="8.60" width="41.84" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="913.57" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q31.3</text>
+<rect x="934.49" y="8.60" width="17.93" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="943.46" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q32.11</text>
+<rect x="952.43" y="8.60" width="23.91" height="18.80" fill="#c9c9c9" stroke="#c9c9c9" stroke-width="0"/>
+<text x="964.38" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q32.12</text>
+<rect x="976.33" y="8.60" width="13.66" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="989.99" y="8.60" width="43.55" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<text x="1011.77" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q32.2</text>
+<rect x="1033.54" y="8.60" width="15.37" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="1048.91" y="8.60" width="6.83" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<rect x="1055.74" y="8.60" width="30.26" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="1070.87" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q32.33</text>
+<polygon points="309.47,9.00 318.44,18.00 309.47,27.00" fill="#b53a3a"/>
+<polygon points="327.40,9.00 318.44,18.00 327.40,27.00" fill="#b53a3a"/>
+<line x1="415.35" y1="7" x2="415.35" y2="29" stroke="#ff2a2a" stroke-width="2.2" opacity="1"/>
+<polygon points="120.00,82.00 415.35,54.00 1082.00,82.00" fill="url(#fadeRed)" opacity="0.95"/>
+<line x1="415.35" y1="28" x2="415.35" y2="54" stroke="#ff2a2a" stroke-width="1.2" opacity="1"/>
+<rect x="6" y="88" width="1100" height="53" fill="#f6f6f6" stroke="#dddddd" stroke-width="0.8" rx="6" ry="6"/>
+<text x="18.00" y="104.00" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="10.8px" font-weight="700" fill="#222">FOXG1</text>
+<text x="18.00" y="117.50" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="7.2px" font-weight="700" fill="#666">Forkhead box G1</text>
+<text x="18.00" y="130.50" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.4px" font-weight="500" fill="#7a7a7a">P55316 | 489 aa</text>
+<line x1="140" y1="114" x2="1085" y2="114" stroke="#b0b0b0" stroke-width="3.6" opacity="1"/>
+<line x1="140" y1="108" x2="140" y2="120" stroke="#444" stroke-width="0.8" opacity="1"/>
+<line x1="1085" y1="108" x2="1085" y2="120" stroke="#444" stroke-width="0.8" opacity="1"/>
+<text x="140.00" y="105.00" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.4px" font-weight="700" fill="#333">1</text>
+<text x="1085.00" y="105.00" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.4px" font-weight="700" fill="#333">489</text>
+<rect x="488.57" y="105.50" width="182.03" height="17" fill="#CC00FF" stroke="#1a1a1a" stroke-opacity="0.35" stroke-width="0.8" rx="4" ry="4"/>
+<text x="488.57" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">181</text>
+<text x="670.59" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">275</text>
+<text x="579.58" y="115.20" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.5px" font-weight="700" fill="#ffffff">Fork-head</text>
+</svg>

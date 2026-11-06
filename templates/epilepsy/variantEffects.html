@@ -1,0 +1,159 @@
+{% extends './layout/sub_layout.html' %}
+{% load static %}
+
+{% block script%}
+<style>
+
+    .ve-section { border:1px solid #d3d3d3; background:#fff; margin:0 0 22px; }
+    .ve-section-head { display:flex; align-items:center; justify-content:space-between; cursor:pointer; padding:18px 24px; background:#f0f6ff; font-size:20px; font-weight:700; color:#1f2d4d; user-select:none; }
+    .ve-section-head .ve-num { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:#0068b9; color:#fff; font-size:16px; margin-right:12px; }
+    .ve-section-head .ve-chev { width:12px; height:12px; border-right:3px solid #0068b9; border-bottom:3px solid #0068b9; transform:rotate(45deg); transition:transform .2s; margin-right:6px; }
+    .ve-section.closed .ve-chev { transform:rotate(-45deg); }
+    .ve-section.closed .ve-section-body { display:none; }
+    .ve-section-body { padding:22px 24px 26px; }
+
+    .ve-id { display:flex; margin:0 0 20px; border-top:3px solid #000; border-bottom:1px solid #000; background:#eceded; }
+    .ve-id > div { flex:1; text-align:center; padding:10px 0; }
+    .ve-id .ve-id-k { font-size:13px; font-weight:700; color:#555; }
+    .ve-id .ve-id-v { font-size:16px; font-weight:700; margin-top:2px; }
+
+    .ve-tool { display:flex; align-items:center; gap:18px; padding:16px 0; border-bottom:1px solid #eee; }
+    .ve-tool:last-child { border-bottom:none; }
+    .ve-tool-name { width:150px; flex:none; font-size:17px; font-weight:700; display:flex; align-items:center; gap:8px; }
+    .ve-info { position:relative; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:#cad1df; color:#fff; font-size:13px; font-weight:700; cursor:pointer; font-family:Georgia,serif; }
+    .ve-info:hover, .ve-info.open { background:#0068b9; }
+    .ve-tip { display:none; position:absolute; left:0; top:28px; z-index:20; width:420px; max-width:80vw; background:#fff; border:1px solid #6e8fc2; border-radius:6px; box-shadow:0 6px 18px rgba(0,0,0,.18); padding:14px 16px; font-family:inherit; font-weight:400; font-size:13px; line-height:1.55; color:#333; text-align:left; cursor:default; }
+    .ve-info.open .ve-tip { display:block; }
+    .ve-tip b { display:block; margin:8px 0 2px; font-size:12px; color:#0068b9; }
+    .ve-tip a { color:#0563C1; text-decoration:underline; word-break:break-all; }
+
+    .ve-meter { flex:1; min-width:240px; }
+    .ve-bar { position:relative; height:16px; border-radius:8px; background:linear-gradient(to right, var(--c0), var(--c1)); }
+    .ve-mark { position:absolute; top:-5px; width:4px; height:26px; margin-left:-2px; background:#111; border-radius:2px; box-shadow:0 0 0 2px #fff; }
+    .ve-ends { display:flex; justify-content:space-between; font-size:12px; color:#666; margin-top:6px; }
+    .ve-val { width:150px; flex:none; text-align:right; font-size:24px; font-weight:700; }
+    .ve-val small { display:block; font-size:13px; font-weight:700; }
+    .ve-call-GoF { color:#F0152E; } .ve-call-LoF { color:#0070C0; } .ve-call-Uncertain { color:#646464; }
+    .ve-muted { flex:1; color:#888; font-size:14px; padding:12px 16px; background:#f6f6f6; border:1px dashed #cfcfcf; border-radius:6px; }
+    .ve-muted strong { color:#666; }
+    .ve-pending .ve-bar { background:#e6e6e6; }
+
+    .ve-legend { font-size:13px; color:#555; margin:0 0 12px; }
+    .ve-legend b { font-weight:700; }
+    table.ve-exp { width:100%; border-collapse:collapse; font-size:14px; }
+    table.ve-exp th { background:#eceded; border:1px solid #d3d3d3; padding:10px 6px; text-align:center; font-weight:700; }
+    table.ve-exp td { border:1px solid #d3d3d3; padding:10px 6px; text-align:center; }
+    .ve-c-gof { color:#F0152E; } .ve-c-lof { color:#0070C0; } .ve-c-ns { color:#646464; } .ve-c-mixed { color:#7b3fb2; } .ve-c-other { color:#8a6d00; }
+    .ve-src { margin-top:4px; font-size:11px; color:#7a8190; font-weight:400; line-height:1.3; }
+    .ve-ref { display:inline-block; padding:0 7px; border-radius:9px; background:#e8f1fb; color:#0563C1; font-weight:700; text-decoration:none; }
+    .ve-ref:hover { text-decoration:underline; }
+    .np-credit { margin-top:12px; padding:10px 14px; background:#f6f9fd; border:1px solid #dbe6f3; border-radius:6px; font-size:12px; line-height:1.55; color:#4a5568; }
+    .np-credit a { color:#0563C1; text-decoration:underline; }
+    .ve-nonhuman { color:#c0580a; font-weight:700; }
+    .ve-exp-empty { margin-top:12px; color:#888; font-size:14px; padding:14px 16px; background:#f6f6f6; border:1px dashed #cfcfcf; border-radius:6px; }
+</style>
+<script type="text/javascript">
+    window.onload = () => {
+
+        $('.ve-section-head').click(function () { $(this).closest('.ve-section').toggleClass('closed'); });
+
+        $('.ve-info').click(function (e) {
+            if ($(e.target).closest('.ve-tip').length) return;
+            var open = $(this).hasClass('open');
+            $('.ve-info').removeClass('open');
+            if (!open) $(this).addClass('open');
+            e.stopPropagation();
+        });
+        $(document).click(function () { $('.ve-info').removeClass('open'); });
+    }
+</script>
+{% endblock %}
+
+<div id="wrap">
+    {% block titleArea %}
+    <div class="sub-visual-area">
+        <div class="sub-visual-txt">
+            <h2 class="page-tit"><span>EPILOG</span><strong>Variant Effects</strong></h2>
+            <div class="path">
+                <span class="home" style="cursor:pointer" onclick="location.href='/'">Home</span>
+                <span style="cursor:pointer" title="Back to the search list" onclick="if (document.referrer.indexOf('/searchList') > -1 && history.length > 1) { history.back(); } else { location.href = '/'; }">Search List</span>
+                <span class="page">Variant Effects</span>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block mainContent %}
+    <div id="contents" class="sub">
+        <div class="cont-inner">
+            <h3 class="page-tit">Variant effects.</h3>
+
+            {% if not eplpInfo %}
+            <p>Variant not found.</p>
+            {% else %}
+
+            <!-- ① Experimental Functional Evidence -->
+            <div class="ve-section">
+                <div class="ve-section-head"><span><span class="ve-num">1</span>Experimental Functional Evidence</span><span class="ve-chev"></span></div>
+                <div class="ve-section-body">
+                    {% include './variantEffects_id.html' %}
+                    <p class="ve-legend">
+                        <b class="ve-c-ns">Non-specific</b> &nbsp;/&nbsp; <b class="ve-c-lof">LoF</b> &nbsp;/&nbsp; <b class="ve-c-gof">GoF</b> &nbsp;/&nbsp; <b class="ve-c-mixed">Mixed</b>
+                    </p>
+                    <table class="ve-exp">
+                        <thead>
+                            <tr>
+                                {% for h in fam_cols %}<th>{{ h }}</th>{% endfor %}
+                                {% if show_extra %}<th>Recovery from inactivation</th><th>Persistent current</th>{% endif %}
+                                <th>Result</th><th>PMID for in vitro functional study</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in assays %}
+                            <tr>
+                                {% for cell in a.cells %}<td>{% for x in cell.1 %}<b class="ve-c-{{ x.1 }}">{{ x.0 }}</b>{% if not forloop.last %} / {% endif %}{% empty %}-{% endfor %}</td>{% endfor %}
+                                {% if show_extra %}
+                                <td>{% for x in a.d.recovery_inactivation %}<b class="ve-c-{{ x.1 }}">{{ x.0 }}</b>{% if not forloop.last %} / {% endif %}{% empty %}-{% endfor %}</td>
+                                <td>{% for x in a.d.persistent_current %}<b class="ve-c-{{ x.1 }}">{{ x.0 }}</b>{% if not forloop.last %} / {% endif %}{% empty %}-{% endfor %}</td>
+                                {% endif %}
+                                <td>{% for x in a.res %}<b class="ve-c-{{ x.1 }}">{{ x.0 }}</b>{% empty %}-{% endfor %}</td>
+                                <td>{% for p in a.pmid_parts %}{% if p.href %}<a href="{{ p.href }}" target="_blank" rel="noopener" style="color:#0563C1;text-decoration:underline;">{{ p.text }}</a>{% else %}{{ p.text }}{% endif %}{% if not forloop.last %} / {% endif %}{% empty %}-{% endfor %}
+                                    <div class="ve-src">{% if a.src == 'neXtProt' %}<a class="ve-ref" href="https://doi.org/10.5281/zenodo.14356360" target="_blank" rel="noopener noreferrer" title="Reference: neXtProt ion channels variants portal (CC BY 4.0)">Reference: neXtProt</a>{% elif a.src_show %}Source: {{ a.src_label }}{% endif %}{% if a.species %}{% if a.src_show or a.src == 'neXtProt' %} &middot; {% endif %}{% if 'sapiens' not in a.species %}<span class="ve-nonhuman">{{ a.species }}</span>{% else %}{{ a.species }}{% endif %}{% endif %}{% if a.cell_system %} &middot; {{ a.cell_system }}{% endif %}</div>{% if a.population %}<div class="ve-src"><span class="ve-nonhuman">Population variant (gnomAD)</span></div>{% endif %}{% if a.approximate %}<div class="ve-src"><span class="ve-nonhuman">Approximate (read from figure)</span></div>{% endif %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if not assays %}
+                    <div class="ve-exp-empty">No experimental functional data has been curated for this variant yet.</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- ② Pathogenicity Prediction -->
+            <div class="ve-section">
+                <div class="ve-section-head"><span><span class="ve-num">2</span>Pathogenicity Prediction</span><span class="ve-chev"></span></div>
+                <div class="ve-section-body">
+                    {% include './variantEffects_id.html' %}
+                    {% for t in pathogenicity %}
+                        {% include './variantEffects_tool.html' with c0='#00D0FF' c1='#FF6400' lo='0 (benign)' hi='1 (pathogenic)' %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- ③ Functional-Direction Prediction -->
+            <div class="ve-section">
+                <div class="ve-section-head"><span><span class="ve-num">3</span>Functional-Direction Prediction</span><span class="ve-chev"></span></div>
+                <div class="ve-section-body">
+                    {% include './variantEffects_id.html' %}
+                    {% for t in funcDirection %}
+                        {% include './variantEffects_tool.html' with c0='#00FA84' c1='#FF004E' lo='0 (LoF)' hi='1 (GoF)' %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% include './creditsNote.html' %}
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+</div>

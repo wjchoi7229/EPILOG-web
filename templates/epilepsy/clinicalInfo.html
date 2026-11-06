@@ -1,0 +1,209 @@
+{% extends './layout/sub_layout.html' %}
+{% load static %}
+
+{% block script%}
+<script type="text/javascript">
+
+    $('.accordion-arr').click(function() {
+        var $row = $(this).closest('.row');
+
+        $row.toggleClass('active');
+        $row.find('.accordion-body').slideToggle(200);
+
+        $('.row').not($row).removeClass('active').find('.accordion-body').slideUp(200);
+    });
+
+    window.onload = () => {
+
+        $('.tbody .row:first').addClass('active');
+        $('.tbody .row:first .accordion-body').show();
+
+        $('#fieldDescToggle').click(function() {
+            $(this).toggleClass('open');
+            $('#fieldDescBody').slideToggle(200);
+        });
+    }
+</script>
+{% endblock %}
+
+<div id="wrap">
+
+    {% block titleArea %}
+    <div class="sub-visual-area">
+        <div class="sub-visual-txt">
+            <h2 class="page-tit"><span>EPILOG</span><strong>Clinical Info</strong></h2>
+            <div class="path">
+                <span class="home" style="cursor:pointer" onclick="location.href='/'">Home</span>
+                <span style="cursor:pointer" title="Back to the search list" onclick="if (document.referrer.indexOf('/searchList') > -1 && history.length > 1) { history.back(); } else { location.href = '/'; }">Search List</span>
+                <span class="page">Clinical Info</span>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block mainContent %}
+
+    <div id="contents" class="sub">
+        <div class="cont-inner">
+            <h3 class="page-tit">Clinical info.</h3>
+
+            <div class="accordian-tbl">
+                <div class="thead">
+                    <div class="row">
+                        <span class="col">Gene</span>
+                        <span class="col">Sample ID</span>
+                        <span class="col">AA</span>
+                        <!-- <span class="col">Clinical info</span> -->
+                    </div>
+                </div>
+                <div class="tbody">
+                    <div class="row">
+                        <div class="accordion-head">
+                            <span class="col"><strong>{{eplpInfo.gene_nm}}</strong></span>
+                            <span class="col"><strong>{{eplpInfo.patient_no}}</strong></span>
+                            <span class="col"><strong>{{eplpInfo.vrat_info_letter}}</strong></span>
+                            <!-- <span class="col"><button type="button" class="btn btn-gray">Hide Clinical Info</button></span> -->
+                        </div>
+                        <div class="accordion-body">
+                            <div class="tbl-area">
+                                <table class="tbl tbl-clinical">
+                                    <caption>List table</caption>
+                                    <colgroup>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Patient ID</th>
+                                            <td>{{eplpInfo.patient_no}}</td>
+                                            <th scope="row">Contained Korea Cohort</th>
+                                            <td>{% if eplpInfo.race == 'KOR' %}O{% else %}X{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Sex</th>
+                                            <td>{{eplpInfo.sex|default_if_none:""}}</td>
+                                            <th scope="row">ClinVar pathogenicity</th>
+                                            <td>{{eplpInfo.clinvar_pathogenicity|default_if_none:""}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Variant cDNA change</th>
+                                            <td>{{eplpInfo.variant_c|default_if_none:""}}</td>
+                                            <th scope="row">Variant Protein change</th>
+                                            <td>{{eplpInfo.trnscr_nm}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Mutation Type</th>
+                                            <td>{% if eplpInfo.mutation_type == 'Small mutation' %}Point mutation{% elif eplpInfo.mutation_type == 'Large CNV' %}CNV{% endif %}</td>
+                                            <th scope="row">Ensembl Transcript ID</th>
+                                            <td>{{eplpInfo.ensembl_transcript|default_if_none:""}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Age at seizure onset</th>
+                                            <td>{{atOnset.onset_selzure_age}}</td>
+                                            <th scope="row">Age at last follow-up</th>
+                                            <td>{{duringCourse.last_flup_age}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Phenotype</th>
+                                            <td colspan="3">{{ duringCourse.phenotype_label|default:duringCourse.phenotype_review_category|default_if_none:"" }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Response to targeted ASM</th>
+                                            <td colspan="3">{{duringCourse.targeted_treatment_response|default_if_none:""}}</td>
+                                        </tr>
+                                        {% if duringCourse.lit_asm_response %}<tr>
+                                            <th scope="row">ASM response</th>
+                                            <td colspan="3"{% if duringCourse.lit_asm_response_norm %} title="Original: {{duringCourse.lit_asm_response}}"{% endif %}>{{duringCourse.lit_asm_response_norm|default:duringCourse.lit_asm_response}}</td>
+                                        </tr>{% endif %}
+                                        {% if duringCourse.lit_asm_used %}<tr>
+                                            <th scope="row">ASM used</th>
+                                            <td colspan="3"{% if duringCourse.lit_asm_used_norm %} title="Original: {{duringCourse.lit_asm_used}}"{% endif %}>{{duringCourse.lit_asm_used_norm|default:duringCourse.lit_asm_used}}</td>
+                                        </tr>{% endif %}
+                                        {% if duringCourse.lit_responsive_asm %}<tr>
+                                            <th scope="row">Responsive ASM</th>
+                                            <td colspan="3"{% if duringCourse.lit_responsive_asm_norm %} title="Original: {{duringCourse.lit_responsive_asm}}"{% endif %}>{{duringCourse.lit_responsive_asm_norm|default:duringCourse.lit_responsive_asm}}</td>
+                                        </tr>{% endif %}
+                                        {% if duringCourse.lit_seizure_presence %}<tr>
+                                            <th scope="row">Seizure presence</th>
+                                            <td colspan="3">{{duringCourse.lit_seizure_presence}}</td>
+                                        </tr>{% endif %}
+                                        {% if duringCourse.lit_seizure_types %}<tr>
+                                            <th scope="row">Seizure types</th>
+                                            <td colspan="3"{% if duringCourse.lit_seizure_types_norm %} title="Original: {{duringCourse.lit_seizure_types}}"{% endif %}>{{duringCourse.lit_seizure_types_norm|default:duringCourse.lit_seizure_types}}</td>
+                                        </tr>{% endif %}
+                                        {% if duringCourse.lit_epilepsy_type %}<tr>
+                                            <th scope="row">Epilepsy type</th>
+                                            <td colspan="3"{% if duringCourse.lit_epilepsy_type_norm %} title="Original: {{duringCourse.lit_epilepsy_type}}"{% endif %}>{{duringCourse.lit_epilepsy_type_norm|default:duringCourse.lit_epilepsy_type}}</td>
+                                        </tr>{% endif %}
+                                        {% if duringCourse.lit_other_phenotypes %}<tr>
+                                            <th scope="row">Other phenotypes</th>
+                                            <td colspan="3">{{duringCourse.lit_other_phenotypes}}</td>
+                                        </tr>{% endif %}
+                                        <tr>
+                                            <th scope="row">Source in PMID</th>
+                                            <td colspan="3">
+                                                {% if pmidHref %}
+                                                <a href="{{pmidHref}}" target="_blank" rel="noopener" style="color:#0563C1;text-decoration:underline;word-break:break-all;">{{literature.pmid}}</a>
+                                                {% else %}
+                                                {{literature.pmid|default_if_none:""}}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">ClinVar ID</th>
+                                            <td>
+                                                {% for cid in clinvarIds %}<a href="https://www.ncbi.nlm.nih.gov/clinvar/variation/{{cid}}/" target="_blank" rel="noopener noreferrer" style="color:#0563C1;text-decoration:underline;word-break:break-all;">{{cid}}</a>{% if not forloop.last %}; {% endif %}{% endfor %}
+                                            </td>
+                                            <th scope="row">LitVar<sup>2</sup></th>
+                                            <td>
+                                                {% if eplpInfo.litvar_link %}
+                                                <a href="{{eplpInfo.litvar_link}}" target="_blank" rel="noopener noreferrer" aria-label="Search on LitVar2" style="display:inline-block;vertical-align:middle;line-height:0;">
+                                                    <svg width="92" height="24" viewBox="0 0 92 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <defs>
+                                                            <linearGradient id="litvarLogoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                                <stop offset="0%" stop-color="#468ac9"/>
+                                                                <stop offset="100%" stop-color="#06a2be"/>
+                                                            </linearGradient>
+                                                        </defs>
+                                                        <rect width="92" height="24" rx="4" fill="url(#litvarLogoGrad)"/>
+                                                        <text x="10" y="17" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#ffffff">LitVar<tspan font-size="9" dy="-5">2</tspan></text>
+                                                    </svg>
+                                                </a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if fieldDescriptions %}
+                            <h4 class="tit mt30 field-desc-toggle" id="fieldDescToggle"><span class="field-desc-arrow">&rsaquo;</span>Field descriptions</h4>
+                            <div class="tbl-area field-desc-body" id="fieldDescBody" style="display:none;">
+                                <table class="tbl tbl-desc">
+                                    <caption>Field descriptions</caption>
+                                    <colgroup>
+                                        <col style="width:220px">
+                                        <col>
+                                    </colgroup>
+                                    <tbody>
+                                        {% for label, desc in fieldDescriptions %}
+                                        <tr>
+                                            <th scope="row">{{ label|safe }}</th>
+                                            <td>{{ desc }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% endblock %}
+</div>

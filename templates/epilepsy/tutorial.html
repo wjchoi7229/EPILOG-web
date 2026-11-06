@@ -1,0 +1,89 @@
+{% extends './layout/sub_layout.html' %}
+{% load static %}
+
+{% block titleArea %}
+<div class="sub-visual-area">
+    <div class="sub-visual-txt">
+        <h2 class="page-tit"><span>EPILOG</span><strong>Tutorial</strong></h2>
+        <div class="path">
+            <span class="home">Home</span>
+            <span class="page">Tutorial</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block mainContent %}
+<div id="contents" class="sub_protein">
+    <style>
+        .tut-wrap { max-width: 1160px; margin: 30px auto 60px; padding: 0 16px; }
+        .tut-stage { position: relative; background: #fff; border: 1px solid #d7dce2; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .tut-stage img { display: block; width: 100%; height: auto; border-radius: 6px; }
+        .tut-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; }
+        .tut-btn { min-width: 110px; padding: 9px 18px; font-size: 15px; font-weight: 600; color: #fff; background: #0068b9; border: 0; border-radius: 4px; cursor: pointer; }
+        .tut-btn:hover { background: #00538f; }
+        .tut-btn:disabled { background: #b9c2cc; cursor: default; }
+        .tut-count { min-width: 90px; text-align: center; font-size: 15px; color: #333; }
+        .tut-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 12px; }
+        .tut-dot { width: 11px; height: 11px; border-radius: 50%; border: 0; background: #c9d1d9; cursor: pointer; padding: 0; }
+        .tut-dot.active { background: #0068b9; }
+        .tut-hint { text-align: center; margin-top: 8px; font-size: 12px; color: #889; }
+    </style>
+
+    <div class="tut-wrap">
+        {% if slides %}
+        <div class="tut-stage"><img id="tutImg" src="{% static slides.0 %}" alt="EPILOG tutorial page 1"></div>
+        <div class="tut-nav">
+            <button type="button" class="tut-btn" id="tutPrev">&lt; Previous</button>
+            <span class="tut-count" id="tutCount"></span>
+            <button type="button" class="tut-btn" id="tutNext">Next &gt;</button>
+        </div>
+        <div class="tut-dots" id="tutDots"></div>
+        <div class="tut-hint">You can also use the left / right arrow keys.</div>
+        {% else %}
+        <p>The tutorial is not available yet.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        (function () {
+            const slides = [{% for s in slides %}"{% static s %}"{% if not forloop.last %}, {% endif %}{% endfor %}];
+            if (!slides.length) { return; }
+            const img = document.getElementById('tutImg');
+            const prev = document.getElementById('tutPrev');
+            const next = document.getElementById('tutNext');
+            const count = document.getElementById('tutCount');
+            const dots = document.getElementById('tutDots');
+            let cur = 0;
+            try { const saved = parseInt(sessionStorage.getItem('epilogTutorialPage') || '0', 10); if (saved >= 0 && saved < slides.length) { cur = saved; } } catch (e) {}
+
+            slides.forEach(function (src, i) {
+                const d = document.createElement('button');
+                d.type = 'button'; d.className = 'tut-dot'; d.setAttribute('aria-label', 'Page ' + (i + 1));
+                d.addEventListener('click', function () { show(i); });
+                dots.appendChild(d);
+            });
+
+            const preload = function (i) { if (i >= 0 && i < slides.length) { new Image().src = slides[i]; } };
+
+            function show(i) {
+                cur = Math.max(0, Math.min(slides.length - 1, i));
+                img.src = slides[cur];
+                img.alt = 'EPILOG tutorial page ' + (cur + 1);
+                count.textContent = (cur + 1) + ' / ' + slides.length;
+                prev.disabled = cur === 0;
+                next.disabled = cur === slides.length - 1;
+                dots.querySelectorAll('.tut-dot').forEach(function (d, k) { d.classList.toggle('active', k === cur); });
+                preload(cur + 1); preload(cur - 1);
+                try { sessionStorage.setItem('epilogTutorialPage', String(cur)); } catch (e) {}
+            }
+            prev.addEventListener('click', function () { show(cur - 1); });
+            next.addEventListener('click', function () { show(cur + 1); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowLeft') { show(cur - 1); } else if (e.key === 'ArrowRight') { show(cur + 1); }
+            });
+            show(cur);
+        })();
+    </script>
+</div>
+{% endblock %}

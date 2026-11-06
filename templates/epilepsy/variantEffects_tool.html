@@ -1,0 +1,24 @@
+<div class="ve-tool{% if t.state == 'pending' %} ve-pending{% endif %}" style="--c0:{{ c0 }};--c1:{{ c1 }};">
+    <div class="ve-tool-name">{{ t.name }}
+        <span class="ve-info" tabindex="0" aria-label="{{ t.name }} description">i
+            <span class="ve-tip">
+                {{ t.info.desc }}
+                <b>Score interpretation</b>{{ t.info.interp }}
+                <b>Reference</b><a href="{{ t.info.link }}" target="_blank" rel="noopener noreferrer">{{ t.info.link_label }}</a>{% if t.info.link2 %} &nbsp;|&nbsp; <a href="{{ t.info.link2 }}" target="_blank" rel="noopener noreferrer">{{ t.info.link2_label }}</a>{% endif %}{% if t.info.link3 %} &nbsp;|&nbsp; <a href="{{ t.info.link3 }}" target="_blank" rel="noopener noreferrer">{{ t.info.link3_label }}</a>{% endif %}
+            </span>
+        </span>
+    </div>
+    {% if t.state == 'value' %}
+    <div class="ve-meter">
+        <div class="ve-bar"><span class="ve-mark" style="left:{{ t.pct }}%;"></span></div>
+        <div class="ve-ends">{% if t.name == 'CADD PHRED' %}<span>0</span><span>40+ (PHRED)</span>{% else %}<span>{{ lo }}</span><span>{{ hi }}</span>{% endif %}</div>
+    </div>
+    <div class="ve-val">{{ t.value|floatformat:3 }}{% if t.call %}<small class="ve-call-{{ t.call }}">{{ t.call }}</small>{% endif %}</div>
+    {% elif t.state == 'na' %}
+    <div class="ve-muted"><strong>Not shown.</strong> {{ t.reason }}</div>
+    {% elif t.state == 'pending' %}
+    <div class="ve-muted"><strong>Data in preparation.</strong> This score will appear once it has been calculated.</div>
+    {% else %}
+    <div class="ve-muted"><strong>No score.</strong> {{ t.reason }}</div>
+    {% endif %}
+</div>

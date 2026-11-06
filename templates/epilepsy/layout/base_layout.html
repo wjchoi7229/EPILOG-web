@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% load static %}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="format-detection" content="telephone=no">
+<title>EPILOG</title>
+<link rel="stylesheet" href="{% static 'css/layout.css' %}?v=20261026a">
+
+<script src="{% static 'js/common/jquery.min.js' %}"></script>
+
+<script src="{% static 'js/common/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/common/jquery.blockUI.js' %}"></script>
+<script src="{% static 'js/common/modernizr-3.7.1.min.js' %}"></script>
+
+<script src="{% static 'js/common/FileSaver.min.js' %}"></script>
+<script src="{% static 'js/common/commonUtils.js' %}"></script>
+<script src="{% static 'js/common/commonMath.js' %}"></script>
+
+<!-- slick js -->
+<script src="{% static 'js/common/slick.js' %}"></script>
+
+    {% block script%}
+    {% endblock %}
+</head>
+
+<body>
+<div id="u-skip">
+    <a class="go-content" href="#contents" onclick="document.getElementById('contents').tabIndex=-1;document.getElementById('contents').focus();return false;">
+        <span>Skip to main content</span>
+    </a>
+</div>
+<div id="wrap">
+
+    <div id="header">
+        <div class="head-inner">
+            <h1 class="logo"><a href="/"><img src="{% static 'img/common/epilog_logo.png' %}" alt="EPILOG"></a></h1>
+            <div class="util">
+                <a href="/">HOME</a>
+                <a href="/tutorial">TUTORIAL</a>
+                <a href="/credits">CREDITS &amp; LICENSES</a>
+            </div>
+        </div>
+    </div>
+
+    {% block container %}
+
+    {% endblock %}
+
+    <div id="footer">
+        <div class="foot-inner">
+            <span class="copy">Copyright © 2024 EPILOG All Right Reserved.</span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% extends './layout/sub_layout.html' %}
+{% load static %}
+
+{% block titleArea %}
+<div class="sub-visual-area">
+    <div class="sub-visual-txt">
+        <h2 class="page-tit"><span>EPILOG</span><strong>Credits &amp; Licenses</strong></h2>
+        <div class="path">
+            <span class="home">Home</span>
+            <span class="page">Credits &amp; Licenses</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block mainContent %}
+<div id="contents" class="sub_protein">
+    <style>
+        .cr-wrap { max-width: 1160px; margin: 30px auto 60px; padding: 0 16px; color: #2a2f3a; font-size: 14px; line-height: 1.6; }
+        .cr-wrap h3 { margin: 34px 0 10px; font-size: 18px; color: #1f2d4d; border-bottom: 2px solid #0068b9; padding-bottom: 6px; }
+        .cr-wrap p { margin: 8px 0; }
+        .cr-wrap a { color: #0563C1; text-decoration: underline; }
+        .cr-table { width: 100%; border-collapse: collapse; margin: 10px 0 6px; font-size: 13px; }
+        .cr-table th, .cr-table td { border: 1px solid #dbe6f3; padding: 8px 10px; text-align: left; vertical-align: top; }
+        .cr-table th { background: #f1f6fc; color: #1f2d4d; font-weight: 700; white-space: nowrap; }
+        .cr-table td:first-child { font-weight: 700; white-space: nowrap; }
+        .cr-note { margin-top: 10px; padding: 10px 14px; background: #fff8e6; border: 1px solid #f0dca8; border-radius: 6px; font-size: 13px; }
+        @media (max-width: 900px) { .cr-table { display: block; overflow-x: auto; } }
+    </style>
+
+    <div class="cr-wrap">
+        <p>EPILOG combines published resources, prediction tools and curated literature evidence. This page lists what is used, in which version, under which license
+           or terms, and how to cite it. Short source notes are shown at the bottom of each report and variant page and link here.</p>
+        <div class="cr-note"><b>For research use only.</b> EPILOG provides computational predictions and curated literature evidence. The evaluations are not a clinical classification
+            and have not been validated for clinical use.</div>
+
+        <h3>1. Variant effect predictors</h3>
+        <table class="cr-table">
+            <tr><th>Resource</th><th>Used for</th><th>Version</th><th>License / terms</th><th>Citation / link</th></tr>
+            <tr><td>AlphaMissense</td><td>Pathogenicity score and class of missense variants (shown as published, values not modified)</td>
+                <td>Google DeepMind release of 2023-09-19 (amino-acid substitution and hg38 tables)</td>
+                <td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> (the first release, v1, was CC BY-NC-SA 4.0)</td>
+                <td>Cheng J, Novati G, Pan J, <i>et al.</i> <i>Science</i> 381, eadg7492 (2023), <a href="https://doi.org/10.1126/science.adg7492" target="_blank" rel="noopener noreferrer">doi:10.1126/science.adg7492</a>.
+                    Data: <a href="https://doi.org/10.5281/zenodo.10813168" target="_blank" rel="noopener noreferrer">doi:10.5281/zenodo.10813168</a></td></tr>
+            <tr><td>REVEL</td><td>Pathogenicity score of missense variants (shown as published)</td>
+                <td>v1.3 (2021-05-03)</td>
+                <td>Freely available for non-commercial use (authors). The Zenodo record lists ODbL 1.0.</td>
+                <td>Ioannidis NM, Rothstein JH, Pejaver V, <i>et al.</i> <i>Am J Hum Genet</i> 99, 877&ndash;885 (2016), <a href="https://doi.org/10.1016/j.ajhg.2016.08.016" target="_blank" rel="noopener noreferrer">doi:10.1016/j.ajhg.2016.08.016</a>.
+                    Scores: <a href="https://doi.org/10.5281/zenodo.7072866" target="_blank" rel="noopener noreferrer">doi:10.5281/zenodo.7072866</a></td></tr>
+            <tr><td>CADD</td><td>CADD PHRED score (retrieved by genomic position, shown as published)</td>
+                <td>GRCh38-v1.7</td>
+                <td>Freely available for non-commercial applications; commercial use requires a license from the University of Washington. &copy; University of Washington, Hudson-Alpha Institute for Biotechnology, Berlin Institute of Health.</td>
+                <td>Schubach M, Maass T, Nazaretyan L, R&ouml;ner S, Kircher M. CADD v1.7. <i>Nucleic Acids Res</i> (2023), <a href="https://doi.org/10.1093/nar/gkad989" target="_blank" rel="noopener noreferrer">doi:10.1093/nar/gkad989</a>.
+                    <a href="https://cadd.gs.washington.edu/" target="_blank" rel="noopener noreferrer">cadd.gs.washington.edu</a></td></tr>
+            <tr><td>SCION</td><td>Gain- versus loss-of-function probability (SCN1A, SCN2A, SCN8A)</td>
+                <td>Repository commit 2ac1384 (2022-11-02), run locally</td>
+                <td>MIT License</td>
+                <td><a href="https://github.com/christianbosselmann/SCION" target="_blank" rel="noopener noreferrer">github.com/christianbosselmann/SCION</a></td></tr>
+            <tr><td>funNCion</td><td>Gain- versus loss-of-function probability (SCN1A, SCN2A, SCN8A)</td>
+                <td>Repository commit 34c129f (2019-11-11), pre-computed table</td>
+                <td>GNU GPL v2 (repository)</td>
+                <td><a href="https://github.com/heyhen/funNCion" target="_blank" rel="noopener noreferrer">github.com/heyhen/funNCion</a></td></tr>
+        </table>
+
+        <h3>2. Curated functional (patch-clamp) evidence</h3>
+        <p>Every evidence row cites the original study by PMID. Rows taken from external compilations are also labelled with their source. EPILOG expressed the reported parameters as LoF / GoF / Non-specific calls and combined them per study.</p>
+        <table class="cr-table">
+            <tr><th>Source label</th><th>Description</th><th>License / terms</th></tr>
+            <tr><td>neXtProt</td><td>Patch-clamp results (human channels only) extracted from the literature by neXtProt curators and re-expressed by EPILOG.
+                Gaudet P, Bairoch A, Abriel H. <i>neXtProt ion channels variants portal</i>. Zenodo, 2024,
+                <a href="https://doi.org/10.5281/zenodo.14356360" target="_blank" rel="noopener noreferrer">doi:10.5281/zenodo.14356360</a>.</td>
+                <td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></td></tr>
+            <tr><td>Paper extraction</td><td>Electrophysiology results that EPILOG curators extracted from the cited papers (GABRA1, KCNQ2, KCNT1).</td><td>See the cited studies</td></tr>
+            <tr><td>SCN Viewer</td><td>Electrophysiology results for SCN1A / SCN2A / SCN8A variants compiled in the EPILOG SCN Viewer curation and re-checked against the original papers (human channels only).</td><td>See the cited studies</td></tr>
+        </table>
+
+        <h3>3. Structures and computed values</h3>
+        <table class="cr-table">
+            <tr><th>Item</th><th>How it is obtained</th><th>Version / notes</th></tr>
+            <tr><td>Protein structures</td><td>AlphaFold 3 predictions of the wild-type and variant proteins. The viewer and reports use the top-ranked model (ranked_0).</td><td>AlphaFold 3 (Abramson J, et al. <i>Nature</i> 2024), code v3.0.0 and v3.0.1 with identical model parameters, run on several servers. Outputs are provided under and subject to the <a href="https://github.com/google-deepmind/alphafold3/blob/main/OUTPUT_TERMS_OF_USE.md" target="_blank" rel="noopener noreferrer">AlphaFold 3 Output Terms of Use</a>: non-commercial use only, and the structures must not be shared with commercial organizations. By using this information, you agree to these terms.</td></tr>
+            <tr><td>Structure comparison</td><td>Calculated by EPILOG: C&alpha; RMSD after Kabsch superposition (all residues and helix/strand residues with pLDDT &ge; 70), TM-score, local metrics within 10 &Aring; of the variant.</td><td>Method v3. Structural change is the C&alpha; RMSD after superposing only the residues within 10 &Aring; of the variant, compared with the per-gene prediction noise (95th percentile of the same measure between each variant and the wild type, taken at least 15 &Aring; away from the variant).</td></tr>
+            <tr><td>Predicted &Delta;&Delta;G</td><td>ThermoMPNN, estimated from the wild-type structure (kcal/mol, positive = destabilizing).</td>
+                <td>Repository commit 370f76e (2026-09-09), MIT License. <a href="https://github.com/Kuhlman-Lab/ThermoMPNN" target="_blank" rel="noopener noreferrer">github.com/Kuhlman-Lab/ThermoMPNN</a></td></tr>
+        </table>
+
+        <h3>4. Clinical annotations</h3>
+        <p>ClinVar and LitVar2 annotations and links are shown as retrieved from NCBI at the time of data collection.</p>
+    </div>
+</div>
+{% endblock %}

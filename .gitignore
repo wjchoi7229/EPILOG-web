@@ -1,0 +1,19 @@
+# environments and caches
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# data and deployment-specific files (never commit)
+*.sqlite3
+*.sqlite3-journal
+data/
+staticfiles/
+logs/
+*.log
+.env
+prj_epilepsy/local_settings.py
+
+# Highcharts must be obtained separately (see README.md)
+static/js/hichart/highcharts*.js
+static/js/hichart/modules/

@@ -1,0 +1,281 @@
+{% extends './layout/sub_layout.html' %}
+{% load static %}
+{% load epilog_filters %}
+
+{% block titleArea %}
+<div class="sub-visual-area">
+    <div class="sub-visual-txt">
+        <h2 class="page-tit"><span>EPILOG</span><strong>Report</strong></h2>
+        <div class="path">
+            <span class="home" style="cursor:pointer" onclick="location.href='/'">Home</span>
+            <span style="cursor:pointer" title="Back to the search list" onclick="if (document.referrer.indexOf('/searchList') > -1 && history.length > 1) { history.back(); } else { location.href = '/'; }">Search List</span>
+            <span class="page">Report</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block mainContent %}
+<div id="contents" class="sub">
+<style>
+    .rp-wrap { max-width: 1160px; margin: 28px auto 60px; padding: 0 16px; color: #1f2d4d; }
+    .rp-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .rp-eyebrow { color: #3b5bdb; font-weight: 700; font-size: 15px; letter-spacing: .3px; }
+    .rp-title { font-size: 34px; font-weight: 800; color: #3b5bdb; margin: 2px 0 0; }
+    .rp-sub { color: #6b7280; font-size: 15px; margin-top: 6px; }
+    .rp-dl { display: flex; gap: 8px; flex-shrink: 0; }
+    .rp-dl button { padding: 9px 18px; font-size: 14px; font-weight: 600; color: #fff; background: #0068b9; border: 0; border-radius: 4px; cursor: pointer; }
+    .rp-dl a.rp-pdf-link { padding: 9px 18px; font-size: 14px; font-weight: 600; color: #fff; background: #0068b9; border-radius: 4px; text-decoration: none; display: inline-block; line-height: normal; }
+    .rp-dl a.rp-pdf-link:hover { background: #00538f; }
+    .rp-dl button:hover { background: #00538f; }
+    .rp-dl button:disabled { background: #8fb4d6; cursor: wait; }
+
+    .rp-summary { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid #d3d9e3; background: #f7f9fc; border-radius: 6px; margin-bottom: 22px; }
+    .rp-summary div { padding: 11px 16px; border-right: 1px solid #e3e8f0; border-bottom: 1px solid #e3e8f0; min-width: 0; }
+    .rp-summary div:nth-child(4n) { border-right: 0; }
+    .rp-summary .rp-span2 { grid-column: span 2; border-right: 0; }
+    .rp-summary .rp-span2m { grid-column: span 2; }
+    .rp-summary .rp-full { grid-column: 1 / -1; border-right: 0; }
+    .rp-summary .rp-long { font-weight: 500; font-size: 14px; }
+    .rp-summary .k { display: block; font-size: 12px; color: #6b7280; font-weight: 600; margin-bottom: 3px; }
+    .rp-summary .v { display: block; font-size: 15px; font-weight: 600; word-break: break-word; }
+    .rp-summary .v a { color: #0563C1; text-decoration: underline; }
+    .rp-summary .v .rp-orig { display: block; font-size: 12px; font-weight: 500; color: #6b7280; margin-top: 2px; }
+
+    .rp-bar { background: #3b5bdb; color: #fff; text-align: center; font-weight: 800; font-size: 13px; letter-spacing: 2px; padding: 5px 0; text-transform: uppercase; }
+    .rp-row { display: grid; grid-template-columns: 3fr 2fr; gap: 24px; margin-bottom: 22px; }
+    .rp-cards { display: grid; gap: 14px; margin-top: 8px; }
+    .rp-cards.c3 { grid-template-columns: repeat(3, 1fr); }
+    .rp-cards.c2 { grid-template-columns: repeat(2, 1fr); }
+    .rp-card { border: 2px solid #8fd0ee; border-radius: 10px; padding: 14px 18px 16px; background: #fff; min-height: 190px; display: flex; flex-direction: column; }
+    .rp-card h4 { margin: 0 0 4px; font-size: 20px; font-weight: 700; color: #3b5bdb; }
+    .rp-card .num { font-size: 46px; font-weight: 800; line-height: 1.15; margin: 8px 0 8px; }
+    .rp-card .verdict { font-size: 18px; font-weight: 700; color: #2f3640; }
+    .rp-card .thr { font-size: 13px; color: #7a8190; margin-top: 4px; }
+    .rp-card .muted { color: #8a93a3; font-size: 14px; margin-top: 14px; line-height: 1.5; }
+    .rp-cards.c4 { grid-template-columns: repeat(4, 1fr); }
+    .rp-card.st { min-height: 150px; }
+    .rp-card.st .num { font-size: 30px; color: #3b5bdb; word-break: break-word; }
+    .rp-card.st .num .u { font-size: 15px; font-weight: 700; margin-left: 5px; color: #7a8190; }
+    .rp-card.st .verdict { font-size: 16px; }
+    .rp-card.st .desc { font-size: 12px; font-weight: 400; color: #6b7280; line-height: 1.35; margin: 2px 0 6px; }
+    .rp-card.st.warn .num { color: #e8890c; }
+    .rp-card.st.warn { border-color: #f0b35a; }
+    .c-path { color: #ef4056; } .c-benign { color: #2e9e5b; } .c-unc { color: #e8890c; } .c-gof { color: #ef4056; } .c-lof { color: #3aa6dd; }
+
+    .rp-exp { border: 2px solid #8fd0ee; border-radius: 10px; padding: 14px 18px; margin-top: 8px; background: #fff; }
+    .rp-exp-grid { display: grid; grid-template-columns: 1.3fr repeat(var(--n, 5), 1fr); gap: 10px; align-items: center; }
+    .rp-exp .name { font-size: 22px; font-weight: 700; color: #3b5bdb; }
+    .rp-exp .pm { font-size: 14px; color: #555; margin-top: 3px; }
+    .rp-exp .pm a { color: #0563C1; text-decoration: underline; }
+    .rp-exp .lab { text-align: center; font-size: 13px; font-weight: 700; color: #3b5bdb; margin-bottom: 6px; }
+    .rp-badge { display: block; text-align: center; font-size: 14px; font-weight: 700; padding: 7px 4px; border-radius: 4px; color: #fff; background: #b9bec7; }
+    .rp-badge.b-gof { background: #ef4056; }
+    .rp-badge.b-lof { background: #4f93d9; }
+    .rp-badge.b-mixed { background: #7b3fb2; }
+    .rp-badge.b-other { background: #c99a1b; }
+    .rp-badge.b-none { background: #d6dae0; color: #fff; }
+    .rp-badge + .rp-badge { margin-top: 4px; }
+    .rp-badge.rp-inline { display: inline-block; padding: 3px 10px; margin: 0 0 0 6px; font-size: 13px; }
+    .rp-exp-foot { display: flex; flex-wrap: wrap; gap: 6px 26px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed #d3d9e3; font-size: 13px; color: #444; }
+    .rp-exp-foot b { color: #3b5bdb; }
+    .rp-src { font-size: 12px; color: #7a8190; }
+    .rp-ref { display:inline-block; padding:0 7px; border-radius:9px; background:#e8f1fb; color:#0563C1; font-weight:700; text-decoration:none; }
+    .np-credit { margin-top:12px; padding:10px 14px; background:#f6f9fd; border:1px solid #dbe6f3; border-radius:6px; font-size:12px; line-height:1.55; color:#4a5568; }
+    .np-credit a { color:#0563C1; text-decoration:underline; }
+    .rp-nonhuman { color: #c0580a; font-weight: 700; }
+    .rp-empty { color: #8a93a3; font-size: 14px; padding: 6px 2px; }
+    .rp-struct { margin: 22px 0; }
+    .rp-lowconf { color: #9a5200; font-weight: 700; margin-top: 8px; padding: 6px 10px; background: #fff4e0; border: 1px solid #f0b35a; border-radius: 6px; }
+    .rp-st-n a { color: #0563C1; text-decoration: underline; }
+    .rp-st { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+    .rp-st td, .rp-st th { border: 1px solid #d9dee7; padding: 5px 12px; }
+    .rp-st th { background: #f0f6ff; color: #1f2d4d; text-align: left; }
+    .rp-st .r { text-align: right; } .rp-st .n { color: #777; font-size: 12px; }
+    .rp-st4 td:first-child, .rp-st4 th:first-child { width: 46%; }
+    .rp-st-t { margin: 12px 0 6px; font-size: 14px; font-weight: 700; color: #1f2d4d; }
+    .rp-st-n { margin-top: 8px; font-size: 12px; color: #777; }
+    .rp-note { font-size: 12px; color: #8a93a3; margin-top: 18px; }
+
+    @media (max-width: 900px) {
+        .rp-summary { grid-template-columns: repeat(2, 1fr); }
+        .rp-summary div:nth-child(4n) { border-right: 1px solid #e3e8f0; }
+        .rp-row { grid-template-columns: 1fr; }
+        .rp-cards.c4 { grid-template-columns: repeat(2, 1fr); }
+        .rp-cards.c3 { grid-template-columns: 1fr; }
+        .rp-exp-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media print {
+        .rp-dl, #u-skip { display: none !important; }
+
+        .sub-visual-area { background-image: url('{% static "img/sub/sub_visual_print.jpg" %}') !important; }
+        #header .logo img { content: url('{% static "img/common/epilog_logo_print.jpg" %}'); }
+        .rp-card, .rp-exp, .rp-summary, .rp-eval { break-inside: avoid; }
+        * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+</style>
+
+<div class="rp-wrap" id="rpCapture">
+    <div class="rp-head">
+        <div>
+            <div class="rp-eyebrow">SAMPLE REPORT</div>
+            <h3 class="rp-title">{{ eplpInfo.gene_nm }}{% if eplpInfo.vrat_info_letter %} p.{{ eplpInfo.vrat_info_letter }}{% endif %}</h3>
+            <div class="rp-sub">Sample {{ eplpInfo.patient_no }} &mdash; reading the three evidence panels together</div>
+        </div>
+        <div class="rp-dl" data-html2canvas-ignore="true">
+            {% if has_pdf %}<a class="rp-pdf-link" id="rpPdfFile" href="{% url 'epilepsy:report_pdf' eplp_anl_info_seq=eplpInfo.eplp_anl_info_seq %}">Download PDF</a>{% else %}<button type="button" id="rpPdf">Download PDF</button>{% endif %}
+        </div>
+    </div>
+
+    <div class="rp-summary">
+        <div><span class="k">Gene</span><span class="v">{{ eplpInfo.gene_nm }}</span></div>
+        <div><span class="k">Sample ID</span><span class="v">{{ eplpInfo.patient_no }}</span></div>
+        <div><span class="k">Variant (protein)</span><span class="v">{% if eplpInfo.vrat_info_letter %}{{ eplpInfo.vrat_info_letter }}{% else %}{{ eplpInfo.trnscr_nm|default:"-" }}{% endif %}</span></div>
+        <div><span class="k">Variant (cDNA)</span><span class="v">{{ eplpInfo.variant_c|default_if_none:"-" }}</span></div>
+        <div><span class="k">Mutation Type</span><span class="v">{% if eplpInfo.mutation_type == 'Small mutation' %}Point mutation{% elif eplpInfo.mutation_type == 'Large CNV' %}CNV{% else %}-{% endif %}</span></div>
+        <div><span class="k">Ensembl Transcript ID</span><span class="v">{{ eplpInfo.ensembl_transcript|default_if_none:"-" }}</span></div>
+        <div><span class="k">ClinVar pathogenicity</span><span class="v">{{ eplpInfo.clinvar_pathogenicity|default_if_none:"-" }}</span></div>
+        <div><span class="k">Sex</span><span class="v">{{ eplpInfo.sex|default_if_none:"-" }}</span></div>
+        <div><span class="k">Age at seizure onset</span><span class="v">{{ atOnset.onset_selzure_age|default_if_none:"-" }}</span></div>
+        <div><span class="k">Age at last follow-up</span><span class="v">{{ duringCourse.last_flup_age|default_if_none:"-" }}</span></div>
+        <div><span class="k">Phenotype</span><span class="v">{% if duringCourse.phenotype_group %}{{ duringCourse.phenotype_group }}<span class="rp-orig">Original: {{ duringCourse.phenotype_review_category }}</span>{% else %}-{% endif %}</span></div>
+        <div><span class="k">Source in PMID</span><span class="v">{% if pmidHref %}<a href="{{ pmidHref }}" target="_blank" rel="noopener">{{ literature.pmid }}</a>{% else %}{{ literature.pmid|default_if_none:"-" }}{% endif %}</span></div>
+        {% if duringCourse.lit_asm_response or duringCourse.lit_asm_used or duringCourse.lit_responsive_asm or duringCourse.lit_seizure_presence or duringCourse.lit_seizure_types or duringCourse.lit_epilepsy_type or duringCourse.lit_other_phenotypes %}
+        {% with asm=duringCourse.lit_asm_used_norm|default:duringCourse.lit_asm_used|default:""|strip_abbr %}
+        {% with rasm=duringCourse.lit_responsive_asm_norm|default:duringCourse.lit_responsive_asm|default:""|strip_abbr %}
+        {% with szt=duringCourse.lit_seizure_types_norm|default:duringCourse.lit_seizure_types|default:"" %}
+
+        <div><span class="k">ASM response</span><span class="v">{{ duringCourse.lit_asm_response_norm|default:duringCourse.lit_asm_response|default:"-" }}</span></div>
+        <div{% if asm|length > 60 %} class="rp-span2m"{% endif %}><span class="k">ASM used</span><span class="v" title="{{ asm }}">{{ asm|default:"-"|truncatechars:270 }}</span></div>
+        <div><span class="k">Responsive ASM</span><span class="v" title="{{ rasm }}">{{ rasm|default:"-"|truncatechars:120 }}</span></div>
+        <div><span class="k">Seizure presence</span><span class="v">{{ duringCourse.lit_seizure_presence|default:"-" }}</span></div>
+        <div{% if asm|length > 60 %} class="rp-span2m"{% endif %}><span class="k">Seizure types</span><span class="v" title="{{ szt }}">{{ szt|default:"-"|truncatechars:300 }}</span></div>
+        <div><span class="k">Epilepsy type</span><span class="v">{{ duringCourse.lit_epilepsy_type_norm|default:duringCourse.lit_epilepsy_type|default:"-"|truncatechars:90 }}</span></div>
+        <div class="{% if asm|length > 60 %}rp-full{% else %}rp-span2{% endif %}"><span class="k">Other phenotypes</span><span class="v rp-long" title="{{ duringCourse.lit_other_phenotypes|default:'' }}">{{ duringCourse.lit_other_phenotypes|default:"-"|truncatechars:640 }}</span></div>
+        {% endwith %}
+        {% endwith %}
+        {% endwith %}
+        {% endif %}
+    </div>
+
+    {% include './variantEvaluation.html' %}
+
+    <div class="rp-row">
+        <div>
+            <div class="rp-bar">Pathogenicity prediction</div>
+            <div class="rp-cards c3">
+                {% for t in pathogenicity %}
+                <div class="rp-card">
+                    <h4>{{ t.name }}</h4>
+                    {% if t.state == 'value' %}
+                    <div class="num c-{{ t.vclass }}">{% if t.name == 'CADD PHRED' %}{{ t.value|floatformat:1 }}{% else %}{{ t.value|floatformat:3 }}{% endif %}</div>
+                    <div class="verdict">{{ t.verdict }}</div>
+                    <div class="thr">{{ t.vthr }}</div>
+                    {% elif t.state == 'na' %}
+                    <div class="muted"><strong>Not shown.</strong> {{ t.reason }}</div>
+                    {% elif t.state == 'pending' %}
+                    <div class="muted"><strong>Data in preparation.</strong></div>
+                    {% else %}
+                    <div class="muted"><strong>No score.</strong> {{ t.reason }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <div class="rp-bar">Functional direction prediction</div>
+            <div class="rp-cards c2">
+                {% for t in funcDirection %}
+                <div class="rp-card">
+                    <h4>{{ t.name }}</h4>
+                    {% if t.state == 'value' %}
+                    <div class="num c-{{ t.vclass }}">{{ t.value|floatformat:3 }}</div>
+                    <div class="verdict">{{ t.verdict }}</div>
+                    <div class="thr">{{ t.vthr }}</div>
+                    {% elif t.state == 'na' %}
+                    <div class="muted"><strong>Not shown.</strong> {{ t.reason }}</div>
+                    {% else %}
+                    <div class="muted"><strong>No score.</strong> {{ t.reason }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="rp-bar">Experimental functional evidence</div>
+    {% for a in assays %}
+    <div class="rp-exp">
+        <div class="rp-exp-grid" style="--n:{{ fam_cols|length }}">
+            <div>
+                <div class="name">Electrophysiology</div>
+                <div class="pm">PMID {% for p in a.pmid_parts %}{% if p.href %}<a href="{{ p.href }}" target="_blank" rel="noopener">{{ p.text }}</a>{% else %}{{ p.text }}{% endif %}{% if not forloop.last %} / {% endif %}{% empty %}-{% endfor %}</div>
+                <div class="pm rp-src">{% if a.src == 'neXtProt' %}<a class="rp-ref" href="https://doi.org/10.5281/zenodo.14356360" target="_blank" rel="noopener noreferrer" title="Reference: neXtProt ion channels variants portal (CC BY 4.0)">Reference: neXtProt</a>{% elif a.src_show %}Source: {{ a.src_label }}{% endif %}{% if a.species %}{% if a.src_show or a.src == 'neXtProt' %} &middot; {% endif %}{% if 'sapiens' not in a.species %}<span class="rp-nonhuman">{{ a.species }}</span>{% else %}{{ a.species }}{% endif %}{% endif %}{% if a.cell_system %} &middot; {{ a.cell_system }}{% endif %}</div>
+                {% if a.population %}<div class="pm rp-src"><span class="rp-nonhuman">Population variant (gnomAD)</span></div>{% endif %}
+                {% if a.approximate %}<div class="pm rp-src"><span class="rp-nonhuman">Approximate (read from figure)</span></div>{% endif %}
+            </div>
+            {% for cell in a.cells %}<div><div class="lab">{{ cell.0 }}</div>{% for x in cell.1 %}<span class="rp-badge b-{{ x.1 }}">{{ x.0 }}</span>{% empty %}<span class="rp-badge b-none">-</span>{% endfor %}</div>{% endfor %}
+        </div>
+        <div class="rp-exp-foot">
+            <span class="rp-res"><b>Result</b> {% for x in a.res %}<span class="rp-badge b-{{ x.1 }} rp-inline">{{ x.0 }}</span>{% empty %}<span class="rp-badge b-none rp-inline">-</span>{% endfor %}</span>
+            {% if a.d.recovery_inactivation %}<span class="rp-res"><b>Recovery from inactivation</b> {% for x in a.d.recovery_inactivation %}<span class="rp-badge b-{{ x.1 }} rp-inline">{{ x.0 }}</span>{% endfor %}</span>{% endif %}
+            {% if a.d.persistent_current %}<span class="rp-res"><b>Persistent current</b> {% for x in a.d.persistent_current %}<span class="rp-badge b-{{ x.1 }} rp-inline">{{ x.0 }}</span>{% endfor %}</span>{% endif %}
+        </div>
+    </div>
+    {% empty %}
+    <div class="rp-exp"><div class="rp-empty">No experimental functional data has been curated for this variant yet.</div></div>
+    {% endfor %}
+
+    {% if structure %}
+    <div class="rp-struct">
+    <div class="rp-bar">Structural evidence</div>
+    <div class="rp-cards c4">
+        {% for c in structure.summary %}
+        <div class="rp-card st{% if c.warn %} warn{% endif %}">
+            <h4>{{ c.title }}</h4>
+            {% if c.desc %}<div class="desc">{{ c.desc }}</div>{% endif %}
+            <div class="num">{{ c.num }}{% if c.unit %}<span class="u">{{ c.unit }}</span>{% endif %}</div>
+            {% if c.verdict %}<div class="verdict">{{ c.verdict }}</div>{% endif %}
+            {% if c.thr %}<div class="thr">{{ c.thr }}</div>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% if structure.low %}<div class="rp-st-n rp-lowconf">Low structural confidence at this site (pLDDT &lt; 70): backbone and interaction changes should be interpreted with caution.</div>{% endif %}
+    <div class="rp-st-n">Predicted wild-type and variant structures are independent AlphaFold3 models (ranked_0, no energy minimization); small differences may reflect prediction noise and do not by themselves indicate a functional effect. Full comparison table: <a href="{% url 'epilepsy:prdctn_result' gene_nm=eplpInfo.gene_nm vrat_info_letter=eplpInfo.vrat_info_letter %}" target="_blank" rel="noopener noreferrer">3D structure page</a>.</div>
+    </div>
+    {% endif %}
+
+    {% include './creditsNote.html' %}
+
+    <div class="rp-note">Scores are computational predictions and curated literature values for research use; see the Variant effects page for tool descriptions and references.</div>
+</div>
+</div>
+
+<script src="{% static 'js/vendor/html2canvas.min.js' %}"></script>
+<script src="{% static 'js/vendor/jspdf.umd.min.js' %}"></script>
+<script>
+(function () {
+
+    var baseName = 'EPILOG_{{ eplpInfo.gene_nm }}_{{ eplpInfo.vrat_info_letter|default:"variant" }}_{{ eplpInfo.patient_no }}'.replace(/[^A-Za-z0-9_.-]+/g, '_');
+    var btns = [document.getElementById('rpPdf')].filter(Boolean);
+    function capture() {
+        var el = document.getElementById('rpCapture');
+        var h = el.scrollHeight;
+        var scale = Math.max(1, Math.min(2, 14000 / h));
+        return html2canvas(el, { scale: scale, backgroundColor: '#ffffff', useCORS: true, logging: false, windowWidth: document.documentElement.clientWidth });
+    }
+    function run(kind) {
+        btns.forEach(function (b) { b.disabled = true; });
+        var done = function () { btns.forEach(function (b) { b.disabled = false; }); };
+        capture().then(function (canvas) {
+            var w = canvas.width, h = canvas.height, JsPDF = window.jspdf.jsPDF;
+            var pdf = new JsPDF({ orientation: w > h ? 'l' : 'p', unit: 'px', format: [w, h], hotfixes: ['px_scaling'] });
+            pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
+            pdf.save(baseName + '.pdf');
+        }).catch(function (e) { alert('Could not create the file: ' + e); }).then(done);
+    }
+    var pdfBtn = document.getElementById('rpPdf');
+    if (pdfBtn) { pdfBtn.addEventListener('click', function () { run('pdf'); }); }
+})();
+</script>
+{% endblock %}

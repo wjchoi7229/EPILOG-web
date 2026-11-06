@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="1112"
+   height="151"
+   viewBox="0 0 1112 151"
+   id="svg54"
+   sodipodi:docname="SYNGAP1_1112x151_vector.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview54"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="2.4136691"
+     inkscape:cx="146.45753"
+     inkscape:cy="118.4918"
+     inkscape:window-width="1440"
+     inkscape:window-height="830"
+     inkscape:window-x="-6"
+     inkscape:window-y="1433"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg54" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="fadeRed"
+       x1="0"
+       y1="0"
+       x2="0"
+       y2="1">
+      <stop
+         offset="0%"
+         stop-color="#ff5050"
+         stop-opacity="0.78"
+         id="stop1" />
+      <stop
+         offset="100%"
+         stop-color="#ff5050"
+         stop-opacity="0"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <rect
+     x="0.00"
+     y="0.00"
+     width="1112.00"
+     height="151.00"
+     fill="#ffffff"
+     stroke="#ffffff"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect2" />
+  <text
+     x="8.00"
+     y="20.00"
+     text-anchor="start"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="8.2px"
+     font-weight="700"
+     fill="#222"
+     id="text2">chr6 (p21.32)</text>
+  <rect
+     x="168.00"
+     y="8.00"
+     width="922.00"
+     height="20.00"
+     fill="#ffffff"
+     stroke="#222222"
+     stroke-width="0.9"
+     rx="4"
+     ry="4"
+     id="rect3" />
+  <rect
+     x="172.00"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect4" />
+  <text
+     x="184.39"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text4">p25.3</text>
+  <rect
+     x="196.78"
+     y="8.60"
+     width="16.52"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect5" />
+  <text
+     x="205.04"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.0px"
+     font-weight="700"
+     fill="#222222"
+     id="text5">p25.2</text>
+  <rect
+     x="213.30"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#202020"
+     stroke="#202020"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect6" />
+  <text
+     x="225.69"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text6">p25.1</text>
+  <rect
+     x="238.07"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect7" />
+  <text
+     x="250.46"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text7">p24.3</text>
+  <rect
+     x="262.85"
+     y="8.60"
+     width="16.52"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect8" />
+  <text
+     x="271.11"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.0px"
+     font-weight="700"
+     fill="#222222"
+     id="text8">p24.2</text>
+  <rect
+     x="279.37"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#202020"
+     stroke="#202020"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect9" />
+  <text
+     x="291.76"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text9">p23</text>
+  <rect
+     x="304.15"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect10" />
+  <text
+     x="316.54"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text10">p22.3</text>
+  <rect
+     x="328.93"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect11" />
+  <text
+     x="341.31"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text11">p22.2</text>
+  <rect
+     x="353.70"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect12" />
+  <text
+     x="366.09"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text12">p22.1</text>
+  <rect
+     x="378.48"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect13" />
+  <text
+     x="390.87"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text13">p21.33</text>
+  <rect
+     x="403.26"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect14" />
+  <text
+     x="415.65"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text14">p21.32</text>
+  <rect
+     x="428.04"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect15" />
+  <text
+     x="440.43"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text15">p21.31</text>
+  <rect
+     x="452.81"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect16" />
+  <text
+     x="465.20"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text16">p21.2</text>
+  <rect
+     x="477.59"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect17" />
+  <text
+     x="489.98"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text17">p21.1</text>
+  <polygon
+     points="502.37,9.00 513.37,18.00 502.37,27.00"
+     fill="#b53a3a"
+     id="polygon17" />
+  <polygon
+     points="524.37,9.00 513.37,18.00 524.37,27.00"
+     fill="#b53a3a"
+     id="polygon18" />
+  <rect
+     x="524.37"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect18" />
+  <text
+     x="540.89"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text18">q12</text>
+  <rect
+     x="557.41"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect19" />
+  <text
+     x="573.93"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text19">q13</text>
+  <rect
+     x="590.44"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#202020"
+     stroke="#202020"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect20" />
+  <text
+     x="606.96"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text20">q14.1</text>
+  <rect
+     x="623.48"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect21" />
+  <text
+     x="640.00"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text21">q14.3</text>
+  <rect
+     x="656.52"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect22" />
+  <text
+     x="673.04"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text22">q15</text>
+  <rect
+     x="689.56"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#202020"
+     stroke="#202020"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect23" />
+  <text
+     x="701.94"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text23">q16.1</text>
+  <rect
+     x="714.33"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect24" />
+  <text
+     x="726.72"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text24">q16.3</text>
+  <rect
+     x="739.11"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect25" />
+  <text
+     x="755.63"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text25">q21</text>
+  <rect
+     x="772.15"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect26" />
+  <text
+     x="784.54"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text26">q22.1</text>
+  <rect
+     x="796.93"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#202020"
+     stroke="#202020"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect27" />
+  <text
+     x="809.31"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text27">q22.31</text>
+  <rect
+     x="821.70"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect28" />
+  <text
+     x="834.09"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text28">q22.33</text>
+  <rect
+     x="846.48"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect29" />
+  <text
+     x="858.87"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text29">q23.2</text>
+  <rect
+     x="871.26"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect30" />
+  <text
+     x="883.65"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text30">q23.1</text>
+  <rect
+     x="896.04"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#202020"
+     stroke="#202020"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect31" />
+  <text
+     x="912.56"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text31">q24.2</text>
+  <rect
+     x="929.07"
+     y="8.60"
+     width="33.04"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect32" />
+  <text
+     x="945.59"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text32">q24.3</text>
+  <rect
+     x="962.11"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect33" />
+  <text
+     x="974.50"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text33">q25.1</text>
+  <rect
+     x="986.89"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect34" />
+  <text
+     x="999.28"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text34">q25.2</text>
+  <rect
+     x="1011.67"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#9b9b9b"
+     stroke="#9b9b9b"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect35" />
+  <text
+     x="1024.06"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text35">q25.3</text>
+  <rect
+     x="1036.44"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#f0f0f0"
+     stroke="#f0f0f0"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect36" />
+  <text
+     x="1048.83"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#222222"
+     id="text36">q26</text>
+  <rect
+     x="1061.22"
+     y="8.60"
+     width="24.78"
+     height="18.80"
+     fill="#202020"
+     stroke="#202020"
+     stroke-width="0"
+     rx="0"
+     ry="0"
+     id="rect37" />
+  <text
+     x="1073.61"
+     y="20.60"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="4.7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text37">q27</text>
+  <line
+     x1="415.65"
+     y1="7.00"
+     x2="415.65"
+     y2="29.00"
+     stroke="#ff2a2a"
+     stroke-width="2.2"
+     opacity="1"
+     id="line37" />
+  <polygon
+     points="120.00,82.00 415.65,54.00 1082.00,82.00"
+     fill="url(#fadeRed)"
+     opacity="0.95"
+     id="polygon37" />
+  <line
+     x1="415.65"
+     y1="28.00"
+     x2="415.65"
+     y2="54.00"
+     stroke="#ff2a2a"
+     stroke-width="1.2"
+     opacity="1"
+     id="line38" />
+  <rect
+     x="6.00"
+     y="88.00"
+     width="1100.00"
+     height="53.00"
+     fill="#f6f6f6"
+     stroke="#dddddd"
+     stroke-width="0.8"
+     rx="6"
+     ry="6"
+     id="rect38" />
+  <text
+     x="18.00"
+     y="104.00"
+     text-anchor="start"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="10.8px"
+     font-weight="700"
+     fill="#222"
+     id="text38">SYNGAP1</text>
+  <text
+     x="18.00"
+     y="117.50"
+     text-anchor="start"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="7.2px"
+     font-weight="700"
+     fill="#666"
+     id="text39">SynGAP</text>
+  <text
+     x="18.00"
+     y="130.50"
+     text-anchor="start"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="6.4px"
+     font-weight="500"
+     fill="#7a7a7a"
+     id="text40">Q96PV0 | 1343 aa</text>
+  <line
+     x1="140.00"
+     y1="114.00"
+     x2="1085.00"
+     y2="114.00"
+     stroke="#b0b0b0"
+     stroke-width="3.6"
+     opacity="1"
+     id="line40" />
+  <line
+     x1="140.00"
+     y1="108.00"
+     x2="140.00"
+     y2="120.00"
+     stroke="#444"
+     stroke-width="0.8"
+     opacity="1"
+     id="line41" />
+  <line
+     x1="1085.00"
+     y1="108.00"
+     x2="1085.00"
+     y2="120.00"
+     stroke="#444"
+     stroke-width="0.8"
+     opacity="1"
+     id="line42" />
+  <text
+     x="1085.00"
+     y="105.00"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="6.4px"
+     font-weight="700"
+     fill="#333"
+     id="text43">1343</text>
+  <rect
+     x="244.92"
+     y="103.5"
+     width="71.120003"
+     height="17"
+     fill="#55aae8"
+     stroke="#2b76af"
+     stroke-width="0.8"
+     rx="4"
+     ry="4"
+     id="rect43" />
+  <line
+     x1="244.92"
+     y1="108"
+     x2="244.92"
+     y2="102.5"
+     stroke="#666666"
+     stroke-width="0.8"
+     opacity="1"
+     id="line43" />
+  <line
+     x1="316.04001"
+     y1="108"
+     x2="316.04001"
+     y2="102.5"
+     stroke="#666666"
+     stroke-width="0.8"
+     opacity="1"
+     id="line44" />
+  <text
+     x="244.92"
+     y="101.3"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="5.5px"
+     font-weight="700"
+     fill="#333333"
+     id="text44">150</text>
+  <text
+     x="316.04001"
+     y="101.3"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="5.5px"
+     font-weight="700"
+     fill="#333333"
+     id="text45">251</text>
+  <text
+     x="280.48001"
+     y="113.2"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="6.2px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text46">PH domain</text>
+  <rect
+     x="309.70999"
+     y="107.5"
+     width="85.199997"
+     height="17"
+     fill="#7d63d9"
+     stroke="#5a42bb"
+     stroke-width="0.8"
+     rx="4"
+     ry="4"
+     id="rect46" />
+  <line
+     x1="309.70999"
+     y1="126"
+     x2="309.70999"
+     y2="120.5"
+     stroke="#666666"
+     stroke-width="0.8"
+     opacity="1"
+     id="line46" />
+  <line
+     x1="394.91"
+     y1="126"
+     x2="394.91"
+     y2="120.5"
+     stroke="#666666"
+     stroke-width="0.8"
+     opacity="1"
+     id="line47" />
+  <text
+     x="309.70999"
+     y="133.3"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="5.5px"
+     font-weight="700"
+     fill="#333333"
+     id="text47">242</text>
+  <text
+     x="394.91"
+     y="133.3"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="5.5px"
+     font-weight="700"
+     fill="#333333"
+     id="text48">363</text>
+  <text
+     x="352.31"
+     y="117.2"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="6.2px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text49">C2 domain</text>
+  <rect
+     x="462.51"
+     y="105.50"
+     width="146.47"
+     height="17.00"
+     fill="#39c71e"
+     stroke="#1a8e10"
+     stroke-width="0.8"
+     rx="4"
+     ry="4"
+     id="rect49" />
+  <line
+     x1="462.51"
+     y1="110.00"
+     x2="462.51"
+     y2="104.50"
+     stroke="#666"
+     stroke-width="0.8"
+     opacity="1"
+     id="line49" />
+  <line
+     x1="608.98"
+     y1="110.00"
+     x2="608.98"
+     y2="104.50"
+     stroke="#666"
+     stroke-width="0.8"
+     opacity="1"
+     id="line50" />
+  <text
+     x="462.51"
+     y="103.30"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="5.5px"
+     font-weight="700"
+     fill="#333"
+     id="text50">459</text>
+  <text
+     x="608.98"
+     y="103.30"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="5.5px"
+     font-weight="700"
+     fill="#333"
+     id="text51">667</text>
+  <text
+     x="535.75"
+     y="117.2"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="7px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text52">Ras-GAP domain</text>
+  <rect
+     x="688.60687"
+     y="105.55849"
+     width="27.952677"
+     height="16.883036"
+     fill="#e86697"
+     stroke="#c44a78"
+     stroke-width="0.916965"
+     rx="5.2915621"
+     ry="3.9724786"
+     id="rect52" />
+  <line
+     x1="702.63"
+     y1="108.00"
+     x2="702.63"
+     y2="104.50"
+     stroke="#666"
+     stroke-width="0.8"
+     opacity="1"
+     id="line52" />
+  <text
+     x="702.63"
+     y="103.30"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, DejaVu Sans, sans-serif"
+     font-size="5.4px"
+     font-weight="700"
+     fill="#333"
+     id="text53">785–815</text>
+  <text
+     x="702.63"
+     y="113.2"
+     text-anchor="middle"
+     font-family="Arial, Helvetica, 'DejaVu Sans', sans-serif"
+     font-size="4.8px"
+     font-weight="700"
+     fill="#ffffff"
+     id="text54"><tspan
+       sodipodi:role="line"
+       id="tspan54"
+       x="702.63"
+       y="113.2">SH3-binding</tspan><tspan
+       sodipodi:role="line"
+       id="tspan55"
+       x="702.63"
+       y="119.2">motif</tspan></text>
+</svg>

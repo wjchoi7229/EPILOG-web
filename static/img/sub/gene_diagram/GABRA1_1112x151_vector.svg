@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.1" width="1112" height="151" viewBox="0 0 1112 151" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="fadeRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff5050" stop-opacity="0.78"/><stop offset="100%" stop-color="#ff5050" stop-opacity="0"/></linearGradient></defs>
+<rect x="0" y="0" width="1112" height="151" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="8.00" y="20.00" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="8.2px" font-weight="700" fill="#222">chr5 (q34)</text>
+<rect x="168" y="8" width="922" height="20" fill="#ffffff" stroke="#222222" stroke-width="0.9" rx="4" ry="4"/>
+<rect x="172.00" y="8.60" width="22.15" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="183.08" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">p15.33</text>
+<rect x="194.15" y="8.60" width="9.57" height="18.80" fill="#c9c9c9" stroke="#c9c9c9" stroke-width="0"/>
+<rect x="203.72" y="8.60" width="18.13" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="212.78" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">p15.31</text>
+<rect x="221.84" y="8.60" width="25.68" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<text x="234.68" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">p15.2</text>
+<rect x="247.52" y="8.60" width="17.12" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="256.08" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">p15.1</text>
+<rect x="264.64" y="8.60" width="24.67" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="276.97" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">p14.3</text>
+<rect x="289.31" y="8.60" width="6.55" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="295.85" y="8.60" width="21.65" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="306.68" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#ffffff">p14.1</text>
+<rect x="317.50" y="8.60" width="24.67" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="329.84" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">p13.3</text>
+<rect x="342.17" y="8.60" width="23.16" height="18.80" fill="#c9c9c9" stroke="#c9c9c9" stroke-width="0"/>
+<text x="353.75" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">p13.2</text>
+<rect x="365.33" y="8.60" width="20.64" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="375.66" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">p13.1</text>
+<rect x="385.98" y="8.60" width="18.13" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<text x="395.04" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">p12</text>
+<rect x="430.79" y="8.60" width="41.28" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="451.43" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q11.2</text>
+<rect x="472.07" y="8.60" width="20.14" height="18.80" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="0"/>
+<text x="482.14" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#ffffff">q12.1</text>
+<rect x="492.21" y="8.60" width="1.51" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="493.72" y="8.60" width="17.62" height="18.80" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="0"/>
+<text x="502.53" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#ffffff">q12.3</text>
+<rect x="511.34" y="8.60" width="8.56" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="519.90" y="8.60" width="24.67" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<text x="532.24" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q13.2</text>
+<rect x="544.57" y="8.60" width="18.13" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="553.63" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q13.3</text>
+<rect x="562.70" y="8.60" width="22.66" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<text x="574.02" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q14.1</text>
+<rect x="585.35" y="8.60" width="7.05" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="592.40" y="8.60" width="47.83" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="616.32" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q14.3</text>
+<rect x="640.23" y="8.60" width="29.71" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="655.08" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q15</text>
+<rect x="669.94" y="8.60" width="22.66" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="681.27" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q21.1</text>
+<rect x="692.59" y="8.60" width="8.56" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="701.15" y="8.60" width="25.68" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="713.99" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q21.3</text>
+<rect x="726.83" y="8.60" width="10.07" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="736.90" y="8.60" width="8.06" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<rect x="744.95" y="8.60" width="10.57" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="755.53" y="8.60" width="31.22" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="771.14" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q23.1</text>
+<rect x="786.74" y="8.60" width="29.20" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="801.34" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q23.2</text>
+<rect x="815.94" y="8.60" width="16.61" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="824.25" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#ffffff">q23.3</text>
+<rect x="832.56" y="8.60" width="28.70" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="846.91" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q31.1</text>
+<rect x="861.26" y="8.60" width="16.11" height="18.80" fill="#c9c9c9" stroke="#c9c9c9" stroke-width="0"/>
+<text x="869.31" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q31.2</text>
+<rect x="877.37" y="8.60" width="25.17" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="889.96" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q31.3</text>
+<rect x="902.54" y="8.60" width="26.68" height="18.80" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="0"/>
+<text x="915.88" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q32</text>
+<rect x="929.23" y="8.60" width="14.60" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<rect x="943.83" y="8.60" width="15.10" height="18.80" fill="#9b9b9b" stroke="#9b9b9b" stroke-width="0"/>
+<rect x="958.93" y="8.60" width="21.15" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="969.50" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q33.3</text>
+<rect x="980.08" y="8.60" width="42.80" height="18.80" fill="#202020" stroke="#202020" stroke-width="0"/>
+<text x="1001.48" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#ffffff">q34</text>
+<rect x="1022.87" y="8.60" width="21.65" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="1033.70" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q35.1</text>
+<rect x="1044.52" y="8.60" width="19.13" height="18.80" fill="#c9c9c9" stroke="#c9c9c9" stroke-width="0"/>
+<text x="1054.09" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.0px" font-weight="700" fill="#222222">q35.2</text>
+<rect x="1063.65" y="8.60" width="22.35" height="18.80" fill="#f0f0f0" stroke="#f0f0f0" stroke-width="0"/>
+<text x="1074.83" y="20.60" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="4.7px" font-weight="700" fill="#222222">q35.3</text>
+<polygon points="404.10,9.00 417.44,18.00 404.10,27.00" fill="#b53a3a"/>
+<polygon points="430.79,9.00 417.44,18.00 430.79,27.00" fill="#b53a3a"/>
+<line x1="1001.48" y1="7" x2="1001.48" y2="29" stroke="#ff2a2a" stroke-width="2.2" opacity="1"/>
+<polygon points="120.00,82.00 1001.48,54.00 1082.00,82.00" fill="url(#fadeRed)" opacity="0.95"/>
+<line x1="1001.48" y1="28" x2="1001.48" y2="54" stroke="#ff2a2a" stroke-width="1.2" opacity="1"/>
+<rect x="6" y="88" width="1100" height="53" fill="#f6f6f6" stroke="#dddddd" stroke-width="0.8" rx="6" ry="6"/>
+<text x="18.00" y="104.00" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="10.8px" font-weight="700" fill="#222">GABRA1</text>
+<text x="18.00" y="117.50" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="7.2px" font-weight="700" fill="#666">GABA-A receptor α1</text>
+<text x="18.00" y="130.50" text-anchor="start" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.4px" font-weight="500" fill="#7a7a7a">P14867 | 456 aa</text>
+<line x1="140" y1="114" x2="1085" y2="114" stroke="#b0b0b0" stroke-width="3.6" opacity="1"/>
+<line x1="140" y1="108" x2="140" y2="120" stroke="#444" stroke-width="0.8" opacity="1"/>
+<line x1="1085" y1="108" x2="1085" y2="120" stroke="#444" stroke-width="0.8" opacity="1"/>
+<text x="140.00" y="105.00" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.4px" font-weight="700" fill="#333">1</text>
+<text x="1085.00" y="105.00" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.4px" font-weight="700" fill="#333">456</text>
+<rect x="196.08" y="105.50" width="467.31" height="17" fill="#00CC00" stroke="#1a1a1a" stroke-opacity="0.35" stroke-width="0.8" rx="4" ry="4"/>
+<text x="196.08" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">28</text>
+<text x="663.38" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">253</text>
+<text x="429.73" y="115.20" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="6.5px" font-weight="700" fill="#ffffff">Extracellular domain</text>
+<rect x="665.46" y="105.50" width="41.54" height="17" fill="#0000FF" stroke="#1a1a1a" stroke-opacity="0.35" stroke-width="0.8" rx="4" ry="4"/>
+<text x="707.00" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">274</text>
+<text x="686.23" y="115.20" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.4px" font-weight="700" fill="#ffffff">M1</text>
+<rect x="719.46" y="105.50" width="43.62" height="17" fill="#FFFF00" stroke="#1a1a1a" stroke-opacity="0.35" stroke-width="0.8" rx="4" ry="4"/>
+<text x="763.08" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">301</text>
+<text x="741.27" y="115.20" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.4px" font-weight="700" fill="#222222">M2</text>
+<rect x="785.92" y="105.50" width="43.62" height="17" fill="#00CCFF" stroke="#1a1a1a" stroke-opacity="0.35" stroke-width="0.8" rx="4" ry="4"/>
+<text x="785.92" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">312</text>
+<text x="829.54" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">333</text>
+<text x="807.73" y="115.20" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.4px" font-weight="700" fill="#222222">M3</text>
+<rect x="1014.38" y="105.50" width="39.46" height="17" fill="#FF6600" stroke="#1a1a1a" stroke-opacity="0.35" stroke-width="0.8" rx="4" ry="4"/>
+<text x="1014.38" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">422</text>
+<text x="1053.85" y="103.30" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.0px" font-weight="700" fill="#333">441</text>
+<text x="1034.12" y="115.20" text-anchor="middle" font-family="Arial, Helvetica, DejaVu Sans, sans-serif" font-size="5.4px" font-weight="700" fill="#ffffff">M4</text>
+</svg>

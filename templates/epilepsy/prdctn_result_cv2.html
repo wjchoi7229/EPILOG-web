@@ -1,0 +1,311 @@
+
+{% extends './layout/sub_layout.html' %}
+    {% load static %}
+        {% block script%}
+        <style>
+
+            #footer { position: static; }
+        </style>
+        <link rel="stylesheet" type="text/css" href="/static/css/icn3d/icn3d.css" />
+        <script src="/static/js/common/three_0.137.0.min.js"></script>
+        <script src="/static/js/icn3d/icn3d.js?v=20261026a"></script>
+        <script src="/static/js/geneDomainColors.js?v=20261028a"></script>
+        <script src="/static/js/icn3dWrapp.js?v=20261028a"></script>
+
+        <script src="/static/js/hichart/highcharts.js"></script>
+        <script src="/static/js/hichart/highcharts-3d.js"></script>
+        <script src="/static/js/hichart/highcharts-more.js"></script>
+        <script src="/static/js/hichart/modules/stock.js"></script>
+        <script src="/static/js/hichart/modules/series-label.js"></script>
+        <script src="/static/js/hichart/modules/heatmap.js"></script>
+        <script src="/static/js/hichart/modules/exporting.js"></script>
+        <script src="/static/js/hichart/modules/boost-canvas.js"></script>
+        <script src="/static/js/hichart/modules/boost.js"></script>
+        <script src="/static/js/hichart/modules/accessibility.js"></script>
+
+        <style>.rm-note-toggle{cursor:pointer;display:flex;align-items:center;gap:6px;color:#999;font-size:13px;margin-top:8px;user-select:none;}.rm-note-toggle .rm-note-arrow{display:inline-block;font-size:20px;line-height:1;transition:transform .2s;}.rm-note-toggle.open{color:#333;}.rm-note-toggle.open .rm-note-arrow{transform:rotate(90deg);}</style>
+        <style> .ICn_area .icn3d-dialog { margin-top: 0 !important; }</style>
+        <script src="/static/js/prdctnChart.js?v=20261028a"></script>
+
+        <script src="/static/js/polarityUtils.js"></script>
+
+        <script type="text/javascript">
+            let _arrIcn3d = {};
+            let _paeChart, _paeChartCV, _plddtChart;
+
+            window.RMSD_URL = '/prdctn_rmsd/{{gene_nm}}/{{vrat_info_letter}}';
+            window.getRmsd = () => (window._rmsdPromise = window._rmsdPromise || fetch(window.RMSD_URL).then(r => r.ok ? r.json() : null).catch(() => null));
+
+            const localHtml = (d) => {
+                const L = d.local;
+                if (!L) return '';
+                const td = 'border:1px solid #d9dee7;padding:7px 12px;';
+                const row = (lab, a, b, delta) => '<tr><td style="' + td + '">' + lab + '</td><td style="' + td + 'text-align:right;">' + a + '</td><td style="' + td + 'text-align:right;">' + b + '</td><td style="' + td + 'text-align:right;font-weight:700;">' + delta + '</td></tr>';
+                const sg = x => (x > 0 ? '+' : '') + (Math.round(x * 10) / 10);
+                const c = L.contacts, h = L.backbone_hbonds, k = L.clashes, ps = L.plddt_site, pl = L.plddt_local;
+                const th = 'border:1px solid #d9dee7;padding:6px 12px;background:#f0f6ff;color:#1f2d4d;font-weight:700;';
+                const dash = '&ndash;';
+                return '<details style="margin-top:12px;"><summary style="cursor:pointer;font-size:16px;font-weight:700;color:#000;">2. Local comparison around ' + L.residue_names[0] + L.position + ' (Cα within ' + L.radius + ' Å, ' + L.n_residues + ' residues)</summary>' +
+                    '<table style="width:100%;font-size:14px;border-collapse:collapse;margin-top:6px;table-layout:fixed;"><colgroup><col style="width:46%"><col style="width:18%"><col style="width:18%"><col style="width:18%"></colgroup>' +
+                    '<tr><th style="' + th + 'text-align:left;">Metric</th><th style="' + th + 'text-align:right;">Wild</th><th style="' + th + 'text-align:right;">Variant</th><th style="' + th + 'text-align:right;">Δ (variant − wild)</th></tr>' +
+                    row('Local Cα RMSD (global fit)', dash, dash, L.local_rmsd === null ? '-' : L.local_rmsd.toFixed(2) + ' Å') +
+                    row('Cα displacement at site', dash, dash, (L.site_displacement === null || L.site_displacement === undefined) ? '-' : L.site_displacement.toFixed(2) + ' Å') +
+                    row('pLDDT at site', ps[0], ps[1], sg(ps[1] - ps[0])) +
+                    row('Mean pLDDT, neighborhood', pl[0], pl[1], (pl[0] !== null && pl[1] !== null) ? sg(pl[1] - pl[0]) : '-') +
+                    row('Cα contacts (&lt; 8 Å)', c.wild, c.variant, '+' + c.gained + ' / −' + c.lost) +
+                    row('Backbone N…O H-bonds', h[0], h[1], sg(h[1] - h[0])) +
+                    row('Steric clashes (heavy atoms &lt; 2.2 Å)', k[0], k[1], sg(k[1] - k[0])) +
+                    (L.polar_contacts ? row('Polar contacts (N/O &lt; 3.5 Å, incl. side chains)', L.polar_contacts[0], L.polar_contacts[1], sg(L.polar_contacts[1] - L.polar_contacts[0])) +
+                        row('Salt bridges (&lt; 4 Å)', L.salt_bridges[0], L.salt_bridges[1], sg(L.salt_bridges[1] - L.salt_bridges[0])) +
+                        row('Hydrophobic contacts (C–C &lt; 4.5 Å)', L.hydrophobic[0], L.hydrophobic[1], sg(L.hydrophobic[1] - L.hydrophobic[0])) +
+                        row('Clashscore (overlap ≥ 0.4 Å, per 1000 atoms)', L.clashscore[0], L.clashscore[1], sg(L.clashscore[1] - L.clashscore[0])) +
+                        ((L.pae_site && L.pae_site[0] !== null && L.pae_site[1] !== null) ? row('Mean PAE, site vs neighborhood (Å)', L.pae_site[0], L.pae_site[1], sg(L.pae_site[1] - L.pae_site[0])) : '') : '') +
+                    '</table>' +
+                    '</details>';
+            };
+            window.toggleRmNote = t => {
+                t.classList.toggle('open');
+                const n = t.nextElementSibling;
+                n.style.display = n.style.display === 'block' ? 'none' : 'block';
+            };
+            window.fillRmsd = () => {
+                const el = document.getElementById('divRmsd'), d = window._rmsdData;
+                if (!el || !d) return;
+                const f = x => x.toFixed(2);
+                const gtd = 'border:1px solid #d9dee7;padding:7px 12px;', gth = 'border:1px solid #d9dee7;padding:6px 12px;background:#f0f6ff;color:#1f2d4d;font-weight:700;';
+                const grow = (n, v, desc) => '<tr><td style="' + gtd + '">' + n + '</td><td style="' + gtd + 'text-align:right;font-weight:700;white-space:nowrap;">' + v + '</td><td style="' + gtd + 'color:#666;font-size:13px;">' + desc + '</td></tr>';
+                el.innerHTML = '<details open><summary style="cursor:pointer;font-size:16px;font-weight:700;color:#000;margin-bottom:6px;">1. Global comparison, wild vs variant</summary>' +
+                    '<table style="width:100%;font-size:14px;border-collapse:collapse;table-layout:fixed;"><colgroup><col style="width:30%"><col style="width:16%"><col style="width:54%"></colgroup>' +
+                    '<tr><th style="' + gth + 'text-align:left;">Metric</th><th style="' + gth + 'text-align:right;">Value</th><th style="' + gth + 'text-align:left;">Description</th></tr>' +
+                    grow('Cα RMSD, all residues', f(d.rmsd) + ' Å', 'All ' + d.n + ' residues superposed') +
+                    (d.rmsd_ss !== undefined ? grow('Cα RMSD, helix/strand', f(d.rmsd_ss) + ' Å', 'DSSP residues with pLDDT ≥ 70 (' + d.n_ss + ' residues)') : '') +
+                    (d.tm !== undefined ? grow('TM-score', d.tm.toFixed(3), '1 = identical; &gt; 0.5 = same fold') : '') +
+                    (d.ddg !== undefined ? grow('Predicted &Delta;&Delta;G', (d.ddg > 0 ? '+' : '') + d.ddg.toFixed(2) + ' kcal/mol', 'ThermoMPNN; &gt; 0 destabilizing; estimated from the wild-type structure') : '') +
+                    '</table></details>' +
+                    localHtml(d) +
+                    '<div class="rm-note-toggle" onclick="toggleRmNote(this)"><span class="rm-note-arrow">&rsaquo;</span>Notes on these values</div>' +
+                    '<div style="display:none;margin-top:4px;font-size:12px;color:#777;">Cα RMSD between the predicted wild-type and variant structures (ranked_0). First value: all residues superposed; second: superposition on helix/strand (DSSP) residues with pLDDT ≥ 70 in both models. TM-score (Zhang &amp; Skolnick, 2004) is the length-normalized score 1/L &middot; &Sigma; 1/(1 + (d<sub>i</sub>/d<sub>0</sub>)<sup>2</sup>) with d<sub>0</sub> = 1.24(L&minus;15)<sup>1/3</sup>&minus;1.8 (L = wild-type length), maximized over the superposition of the two structures; unlike RMSD it is not dominated by a few distant loops or linkers. Per-residue values are in the RMSD charts below.<br><br>Counts involve at least one residue in the neighborhood; contacts are Cα pairs ≥ 3 residues apart. Both structures are independent AlphaFold3 predictions (no energy minimization), so small differences may reflect prediction noise rather than a real structural change.</div>';
+            };
+            window.getRmsd().then(d => { window._rmsdData = d; window.fillRmsd(); });
+            let vratLc;
+            let geneVratNm, geneWildNm;
+            $(document).ready(()=>{
+                $.blockUI();
+
+                $.ajaxSetup({
+                    headers: { "X-CSRFToken": '{{csrf_token}}' }
+                });
+
+                let arrPromise = [];
+                geneVratNm = $('#geneNm').val() + '_' + $('#vratInfoLetter').val();
+
+                geneWildNm = $('#geneNm').val() + '_wild';
+
+                vratLc = $('#vratInfoLetter').val().replace(/[^0-9]/g,'');
+
+                renderSequenceBar('divSeqBar', $('#geneNm').val());
+
+                _paeChart = new PrdctnChart('divPaeMUT1', true);
+                _paeChart.initVirusSeq(document.forms.prdctnForm);
+
+                _paeChartCV = new PrdctnChart('divPaeCV1', true);
+                _paeChartCV.initVirusSeq(document.forms.prdctnForm);
+
+                _plddtChart = new PrdctnChart('divPlddtCv2', true);
+                _plddtChart.initVirusSeq(document.forms.prdctnForm);
+                arrPromise.push(_plddtChart.drawPlddtCv2('{{af2_result_info.MUT.0.pLDDT_cvs_file}}', '{{wuhan_result.0.pLDDT_cvs_file}}',_arrIcn3d['divPdbMUT1'],_arrIcn3d['divPdbCv2'],'divPlddtCv2', geneVratNm, geneWildNm));
+
+                Promise.all(arrPromise).then(arrData => {
+                    //0:pae, 1:plddt
+
+                    const paeCvPromise = showCv2($('.plNum').eq(0),'CV', '1', '{{wuhan_result.0.pdb_file}}', '{{wuhan_result.0.pae_csv_file}}', '{{wuhan_result.0.pLDDT_cvs_file}}', 530, '{{af2_result_info.MUT.0.pLDDT_cvs_file}}',geneVratNm);
+
+                    const paeMutPromise = showAf2Cv2($('.mlNum').eq(0),'MUT', '1', '{{af2_result_info.MUT.0.pdb_file}}', '{{af2_result_info.MUT.0.pae_csv_file}}', '{{af2_result_info.MUT.0.pLDDT_cvs_file}}', 530, '{{wuhan_result.0.pLDDT_cvs_file}}',geneVratNm);
+
+                    Promise.all([paeCvPromise, paeMutPromise]).then(() => {
+                        document.body.style.display = 'none';
+                        void document.body.offsetHeight;
+                        document.body.style.display = '';
+                    });
+
+                    if ($('#trget_virus').val() !='ALL' && $('#output_virus_seq_2').val() == '') {
+                    } else {
+                        $.unblockUI();
+                    }
+                });
+                $.unblockUI();
+
+                //$('.plNum').style.fontSize = 30px;
+                //document.getElementsByClassName("plNum").style.fontSize = 30px;
+
+            });
+
+            const prdctnPrint = function(){
+                window.print();
+            }
+
+            const icn3dDrawFin = (icn3dObj) => {
+                //icn3dObj.icn3d.loadScriptCls.loadScript(`select .A:${vratLc}`);
+            }
+
+        </script>
+    {% endblock %}
+
+        {% block titleArea %}
+        <div class="sub-visual-area">
+            <div class="sub-visual-txt">
+                <h2 class="page-tit"><span>Epilog</span><strong>Search View</strong></h2>
+                <div class="path">
+					<span class="home" style="cursor:pointer" onclick="location.href='/'">Home</span>
+					<span style="cursor:pointer" title="Back to the search list" onclick="if (document.referrer.indexOf('/searchList') > -1 && history.length > 1) { history.back(); } else { location.href = '/'; }">Search List</span>
+					<span class="page">Search View</span>
+				</div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block mainContent%}
+
+        <div id="contents" class="sub_protein">
+            <div class="cont-inner">
+                <form id="prdctnForm" name="prdctnForm" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="geneNm" name="geneNm" value="{{gene_nm}}" />
+                    <input type="hidden" id="vratInfoLetter" name="vratInfoLetter" value="{{vrat_info_letter}}" />
+                    <input type="hidden" id="pae" name="pae" />
+                    <input type="hidden" id="plddt" name="plddt" />
+
+                    {% if prdctnForm.errors%}
+                    <div class="alert alert-danger">
+                        {% for field in prdctnForm %}
+
+                        {% if field.errors %}
+                        <div>
+                            <strong>{{field.label }}</strong>
+                            {{ field.errors}}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for error in prdctnForm.non_field_errors %}
+                        <div>
+                            <strong>{{ error }}</strong>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="participation_box board_area">
+                        <!-- info input -->
+                        <div class="participate_area sars">
+                            <div id="helpPopup">
+                                <p class="pop_text"></p>
+                            </div>
+                            <ul class="input_list">
+                                {% if af2_result_info %}
+                                <li style="padding-top:30px;">
+                                    <div class="tutorial_tit2">
+                                        <div class="resTitBg" style="font-size:18px;font-weight:700;">
+                                            3D Structure Prediction
+                                            <a class="noprint" href="/prdctn_result_download/{{gene_nm}}/{{vrat_info_letter}}" style="float:right;margin-right:14px;font-size:13px;font-weight:600;color:#fff;background:#1993f2;border:1px solid #0068b9;border-radius:4px;padding:4px 12px;text-decoration:none;" title="ranked_0 model files (structure, pLDDT, PAE) as a zip">Download (ranked_0)</a>
+                                            <span style="display:none">
+                                                PAE is a value that estimates the difference between the relative locations of two residues of the model and the real model. A low PAE value indicates that the accuracy of the relative location of the two residues is high.<br/>
+                                                pLDDT is a value that estimates the reliability of the model. At the same time, it indicates how well the protein structure folds in the corresponding location.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div style="margin:10px 0 0;padding:8px 12px;border:1px solid #e0e0e0;border-radius:4px;background:#fafafa;font-size:12px;color:#555;line-height:1.5;">Structures are AlphaFold 3 outputs, provided under and subject to the <a href="https://github.com/google-deepmind/alphafold3/blob/main/OUTPUT_TERMS_OF_USE.md" target="_blank" rel="noopener noreferrer">AlphaFold 3 Output Terms of Use</a> (non-commercial use only; do not share with commercial organizations). Abramson J, et al. Accurate structure prediction of biomolecular interactions with AlphaFold 3. <i>Nature</i> 2024.</div>
+                                    <div class="tutorial_expl01" style="margin:0px;">
+                                        <ol>
+                                            <li> The PAE is a value that estimates the difference between the relative locations of two residues of the model and the real model. The value has a negative correlation with the accuracy of the pairwise position of two residues. As the PAE value decreases, the accuracy increases and vice versa. </dl>
+                                            <li> The pLDDT is a value that estimates the reliability of the model. The value indicates the likelihood of folding of the protein structure at that location, with higher values indicating a greater likelihood of folding.</dl>
+                                        </ol>
+                                    </div>
+
+                                    <div id="divSeqBar" style="margin-top:16px;"></div>
+
+                                    <div style="display:flex;gap:4px;margin-top:20px;">
+                                        <div class="input_area" style="flex:1 1 0;min-width:0;margin:0;">
+                                            <div class="noprint noprint_mt_0 model_list" style="display: flex;{% if wuhan_result|length < 2 %} display: none;{% endif %}" >
+                                                {% for tmp_wild in wuhan_result %}
+                                                <button id="{{forloop.counter}}" type="button" class="plNum" onclick="showCv2(this, 'CV', '{{forloop.counter}}', '{{tmp_wild.pdb_file}}', '{{tmp_wild.pae_csv_file}}', '{{tmp_wild.pLDDT_cvs_file}}', 530, '{{prdctn_info.pLDDT_cvs_file}}', geneWildNm)">{{forloop.counter}}</button>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="stit" style="margin-right:10px !important;">
+                                                <span class="dot" style="font-weight:700;"> Protein structure ({{gene_nm}}_wild, Reference)</span>
+                                            </div>
+                                            {% for tmp_result in wuhan_result %}
+                                            <div id="divCV{{forloop.counter}}" style="display:none; width:100%;" >
+                                                <div class="ICn_area" style="margin:0;padding:0;display:flow-root;">
+                                                    <div id="divPdbCV{{forloop.counter}}"></div>
+                                                </div>
+                                                <div class="ICn_area" style="margin:0;padding:0;display:flow-root;">
+                                                    <div id="divPaeCV{{forloop.counter}}" style="width:100%;height:500px;"></div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="input_area" style="flex:1 1 0;min-width:0;margin:0;">
+                                            <div class="noprint noprint_mt_0 model_list" style="display: flex;{% if af2_result_info.MUT|length < 2 %} display: none;{% endif %}">
+                                                {% for tmp_result in af2_result_info.MUT %}
+                                                <button id="{{forloop.counter}}" type="button" class="mlNum" onclick="showAf2Cv2(this, '{{vrat_info_letter}}', '{{forloop.counter}}', '{{tmp_result.pdb_file}}', '{{tmp_result.pae_csv_file}}', '{{tmp_result.pLDDT_cvs_file}}', 530, '{{wuhan_result.0.pLDDT_cvs_file}}', geneVratNm)">{{forloop.counter}}</button>
+                                                {% endfor %}
+                                                <!-- <img id="imgid" class="help_pop noprint" src="/static/img/sub/ico_help.png" alt="help" style="display: inline"> -->
+                                                <span style="display:none">
+                                                    In the case of Local prediction, 5 prediction models are created, and can be checked when a number between 1 to 5 is applied based on average pLDDT value.
+                                                </span>
+                                            </div>
+                                            <div class="stit" style="margin-right:10px !important;">
+                                                <span class="dot" style="font-weight:700;">Protein structure ({{gene_nm}}_{{vrat_info_letter}})</span>
+                                            </div>
+                                            {% for tmp_result in af2_result_info.MUT %}
+                                            <div id="divMUT{{forloop.counter}}" style="display:none; width:100%;" >
+                                                <div class="ICn_area" style="margin:0;padding:0;display:flow-root;">
+                                                    <div id="divPdbMUT{{forloop.counter}}"></div>
+                                                </div>
+                                                <div class="ICn_area" style="margin:0;padding:0;display:flow-root;">
+                                                    <div id="divPaeMUT{{forloop.counter}}" style="width:100%;height:500px;"></div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div style='page-break-before:always'></div>
+                                    <div class="input_area">
+                                        <div style="width:100%;" >
+                                            <div class="ICn_area" style="overflow:hidden;">
+                                                <div id="divPlddtCv2Line" style="width:100%;height:350px;float:left;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                {% else %}
+                                <li>
+                                    No Data
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+            $('.tbody .row:first').addClass('active');
+            $('.tbody .row:first .accordion-body').show();
+
+            $('.accordion-arr').click(function() {
+                var $row = $(this).closest('.row');
+
+                $row.toggleClass('active');
+                $row.find('.accordion-body').slideToggle(200);
+
+                $('.row').not($row).removeClass('active').find('.accordion-body').slideUp(200);
+            });
+         </script>
+
+        {% endblock %}

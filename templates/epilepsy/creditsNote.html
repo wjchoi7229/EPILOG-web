@@ -1,0 +1,11 @@
+<div class="np-credit">
+    <b>Data sources.</b>
+    {% if credit_tools %}{{ credit_tools }}.{% endif %}
+    Versions, citations and licenses: <a href="/credits">Credits &amp; Licenses</a>.
+    {% if has_nextprot %}<br>
+    <a href="https://doi.org/10.5281/zenodo.14356360" target="_blank" rel="noopener noreferrer">neXtProt</a> patch-clamp data
+    (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>;
+    Gaudet P, Bairoch A, Abriel H. <i>neXtProt ion channels variants portal</i>. Zenodo, 2024,
+    <a href="https://doi.org/10.5281/zenodo.14356360" target="_blank" rel="noopener noreferrer">doi:10.5281/zenodo.14356360</a>),
+    re-expressed by EPILOG as LoF / GoF / Non-specific calls.{% endif %}
+</div>

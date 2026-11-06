@@ -1,0 +1,93 @@
+
+<style>
+    .ev-wrap { border:1px solid #d3d3d3; background:#fff; margin:0 0 22px; }
+    .ev-head { padding:16px 24px; background:#f0f6ff; font-size:28px; font-weight:700; color:#1f2d4d; display:flex; align-items:center; justify-content:space-between; }
+    .ev-head small { font-size:12px; font-weight:400; color:#6b7280; }
+    .ev-strip { display:grid; grid-template-columns:repeat(3, 1fr); border-bottom:1px solid #e3e8f0; }
+    .ev-cell { padding:14px 18px; border-right:1px solid #e3e8f0; min-width:0; }
+    .ev-cell:last-child { border-right:0; }
+    .ev-k { font-size:12px; font-weight:700; color:#6b7280; letter-spacing:.3px; text-transform:uppercase; }
+    .ev-v { display:inline-block; margin-top:6px; padding:5px 12px; border-radius:14px; font-size:15px; font-weight:700; color:#fff; background:#9aa3b0; }
+    .ev-sub { margin-top:6px; font-size:12px; color:#6b7280; line-height:1.4; }
+    .ev-v.dmg, .ev-v.gof, .ev-v.disc { background:#e5384f; }
+    .ev-v.unc, .ev-v.mod { background:#e8890c; }
+    .ev-v.ben, .ev-v.conc, .ev-v.high { background:#2e9e5b; }
+    .ev-v.lof { background:#3a82d4; }
+    .ev-v.mixed { background:#7b3fb2; }
+    .ev-v.ns, .ev-v.nd, .ev-v.low, .ev-v.na { background:#9aa3b0; }
+    .ev-v.part { background:#e08a1e; }
+    .ev-v.pdis { background:#c9a227; }
+    .ev-take { padding:16px 24px 18px; font-size:14px; line-height:1.65; color:#2a2f3a; }
+    .ev-take .ev-take-t { font-size:12px; font-weight:700; color:#3b5bdb; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px; }
+    .ev-badge { display:inline-block; margin-left:8px; padding:1px 8px; border-radius:10px; background:#0068b9; color:#fff; font-size:11px; font-weight:700; }
+    .ev-basis { margin-top:6px; font-size:12px; color:#4b5563; line-height:1.4; }
+    .ev-basis b { color:#1f2d4d; }
+    .ev-def { margin-top:4px; font-size:11px; color:#9aa3b0; }
+    .ev-det { border-bottom:1px solid #e3e8f0; padding:8px 24px; font-size:12.5px; color:#2a2f3a; }
+    .ev-det summary { cursor:pointer; font-weight:700; color:#0068b9; }
+    .ev-det table { border-collapse:collapse; margin-top:8px; width:100%; }
+    .ev-det th, .ev-det td { border:1px solid #e3e8f0; padding:4px 8px; text-align:left; vertical-align:top; }
+    .ev-det th { background:#f7f9fc; color:#6b7280; font-weight:700; }
+    @media (max-width: 900px) { .ev-strip { grid-template-columns:repeat(2, 1fr); } }
+    .ev-sec { padding:10px 24px 6px; font-size:12px; font-weight:700; color:#3b5bdb; letter-spacing:1.5px; text-transform:uppercase; border-top:1px solid #e3e8f0; }
+    .ev-head + .ev-sec { border-top:0; }
+
+    .ev-v.pl-vh { background:#0053d6; }
+    .ev-v.pl-c  { background:#65cbf3; color:#102a43; }
+    .ev-v.pl-l  { background:#ffdb13; color:#3d3200; }
+    .ev-v.pl-vl { background:#ff7d45; }
+    .ev-v.ch-in { background:#0f9d8a; }
+    .ev-v.ch-out { background:#d9480f; }
+    .ev-v.st-d  { background:#c2255c; }
+    .ev-v.st-m  { background:#f4a6bd; color:#5c0f2a; }
+    .ev-v.st-s  { background:#5f3dc4; }
+    .ev-v.sd { background:#9aa3b0; }
+</style>
+{% if evaluation %}
+<div class="ev-wrap">
+    <div class="ev-head"><span>Evaluation</span></div>
+    {% if structure and structure.assess %}<div class="ev-sec">Function (experimental + in silico)</div>{% endif %}
+    <div class="ev-strip">
+        <div class="ev-cell"><div class="ev-k">Pathogenicity</div>
+            <span class="ev-v {% if evaluation.eval_pathogenicity == 'Likely damaging' %}dmg{% elif evaluation.eval_pathogenicity == 'Likely benign' %}ben{% elif evaluation.eval_pathogenicity == 'Uncertain' %}unc{% else %}nd{% endif %}">{{ evaluation.eval_pathogenicity }}</span>
+            {% if not evaluation_basis.path %}<div class="ev-sub">no in silico score</div>{% endif %}
+            {% if evaluation_basis.path %}<div class="ev-basis"><b>Basis:</b> {{ evaluation_basis.path }}</div>{% endif %}</div>
+        <div class="ev-cell"><div class="ev-k">Functional effect</div>
+            <span class="ev-v {% if evaluation.eval_function == 'LoF' %}lof{% elif evaluation.eval_function == 'GoF' %}gof{% elif evaluation.eval_function == 'Mixed' %}mixed{% elif evaluation.eval_function == 'Non-specific' %}ns{% else %}nd{% endif %}">{{ evaluation.eval_function }}</span>
+            {% if not evaluation_basis.func %}<div class="ev-sub">&nbsp;</div>{% endif %}
+            {% if evaluation_basis.func %}<div class="ev-basis"><b>Basis:</b> {{ evaluation_basis.func }}</div>{% endif %}</div>
+        <div class="ev-cell"><div class="ev-k">Concordance</div>
+            <span class="ev-v {% if evaluation.concordance == 'Concordant' %}conc{% elif evaluation.concordance == 'Discordant' %}disc{% elif evaluation.concordance == 'Partial agreement' %}part{% elif evaluation.concordance == 'Prediction disagreement' %}pdis{% else %}na{% endif %}">{{ evaluation.concordance }}</span>
+                        {% if evaluation_basis.conc %}<div class="ev-basis"><b>Basis:</b> {{ evaluation_basis.conc }}</div>{% endif %}</div>
+    </div>
+    {% if evaluation_basis.detail and not hide_evidence_details %}
+    <details class="ev-det">
+        <summary>Evidence details: experimental parameters by study</summary>
+        <table>
+            <tr><th>PMID / source</th><th>Species</th><th>Observed effect by parameter</th><th>Study result</th></tr>
+            {% for d in evaluation_basis.detail %}
+            <tr><td>{% if d.pmid %}{{ d.pmid }}{% else %}PMID not recorded{% endif %}{% if d.source %}<br><span style="color:#6b7280;">{{ d.source }}</span>{% endif %}</td>
+                <td>{{ d.species|default:"-" }}</td>
+                <td>{% for lab, v in d.items %}{{ lab }}: <b>{{ v }}</b>{% if not forloop.last %}<br>{% endif %}{% empty %}-{% endfor %}</td>
+                <td><b>{{ d.result }}</b></td></tr>
+            {% endfor %}
+        </table>
+        <div class="ev-def">Each parameter is judged separately and the study result follows rule v1; LoF and GoF parameters are not added up into a single score.</div>
+    </details>
+    {% endif %}
+    {% if structure and structure.assess %}
+    <div class="ev-sec">Protein structure</div>
+    <div class="ev-strip">
+        {% for c in structure.assess %}
+        <div class="ev-cell"><div class="ev-k">{{ c.k }}</div>
+            <span class="ev-v {{ c.cls }}">{{ c.v }}</span>
+            {% if c.basis %}<div class="ev-basis"><b>Basis:</b> {{ c.basis }}</div>{% endif %}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="ev-take">
+        <div class="ev-take-t">Interpretation{% if takeaway_curated %}<span class="ev-badge">Curated</span>{% endif %}</div>
+        {{ takeaway|linebreaksbr }}{% if structure and structure.interp %}<br><br>{{ structure.interp }}{% endif %}
+    </div>
+</div>
+{% endif %}

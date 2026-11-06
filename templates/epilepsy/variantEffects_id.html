@@ -1,0 +1,5 @@
+<div class="ve-id">
+    <div><div class="ve-id-k">Gene</div><div class="ve-id-v">{{ eplpInfo.gene_nm }}</div></div>
+    <div><div class="ve-id-k">Sample ID</div><div class="ve-id-v">{{ eplpInfo.patient_no }}</div></div>
+    <div><div class="ve-id-k">AA</div><div class="ve-id-v">{% if eplpInfo.vrat_info_letter %}{{ eplpInfo.vrat_info_letter }}{% else %}{{ eplpInfo.trnscr_nm }}{% endif %}</div></div>
+</div>

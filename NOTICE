@@ -1,0 +1,37 @@
+EPILOG web application
+Copyright 2026 the EPILOG authors
+
+This product uses third-party software. The Apache License 2.0 of this repository
+applies to the original code of the application only. The components below are bundled in the static/
+directory and keep their own licenses and copyright notices (see the headers of the individual files).
+
+  iCn3D (icn3d.js, css/icn3d)
+      https://github.com/ncbi/icn3d
+  three.js r137 (three_0.137.0.min.js)
+      MIT License, https://threejs.org/
+  jQuery 3.6.0 (jquery.min.js), jQuery UI 1.13.2 (jquery-ui.min.js)
+      MIT License, https://jquery.org/license/
+  jQuery BlockUI (jquery.blockUI.js)
+      MIT / GPL dual license
+  slick carousel (slick.js)
+      MIT License
+  Modernizr 3.7.1 (modernizr-3.7.1.min.js)
+      MIT License
+  FileSaver.js (FileSaver.min.js)
+      MIT License
+  html2canvas 1.4.1 (vendor/html2canvas.min.js)
+      MIT License
+  jsPDF 2.5.1 (vendor/jspdf.umd.min.js)
+      MIT License
+  Pretendard GOV font (fonts/PretendardGov)
+      SIL Open Font License 1.1
+
+The secondary-structure assignment in web_epilepsy/utils/dssp_np.py is adapted from pydssp 0.9.1
+(https://github.com/ShintaroMinami/PyDSSP, MIT License, Copyright (c) 2022 Shintaro Minami).
+
+Data and predictions from third-party resources (REVEL, AlphaMissense, CADD, SCION, funNCion, ThermoMPNN, AlphaFold 3,
+ClinVar, LitVar, gnomAD, neXtProt) are not part of this repository; their licenses are listed on the Credits & Licenses page
+of the web resource.
+
+Highcharts is used for the charts but is NOT distributed in this repository (see README.md); obtain it from
+https://www.highcharts.com/ and observe its license terms.

@@ -1,0 +1,498 @@
+
+{% extends './layout/sub_layout.html' %}
+        {% load static %}
+
+        {% block titleArea %}
+        <div class="sub-visual-area">
+            <div class="sub-visual-txt">
+                <h2 class="page-tit"><span>EPILOG</span><strong>Search List</strong></h2>
+                <div class="path">
+					<span class="home">Home</span>
+					<span class="page">Search List</span>
+				</div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block script %}
+        <script type="text/javascript">
+
+            $('.tbody .row:first').addClass('active');
+            $('.tbody .row:first .accordion-body').show();
+
+            $('.accordion-arr').click(function() {
+                var $row = $(this).closest('.row');
+                $row.toggleClass('active');
+                $row.find('.accordion-body').slideToggle(200);
+
+                $('.row').not($row).removeClass('active').find('.accordion-body').slideUp(200);
+            });
+
+            const movePage = (url) => {
+                document.moveForm.action = url;
+                document.moveForm.submit();
+            }
+         </script>
+        {% endblock%}
+
+        {% block mainContent%}
+
+        <div id="contents" class="sub">
+            <form name="moveForm" method="get">
+            </form>
+            <div class="cont-inner">
+                <div class="clinicalinfo-img-box">
+                    <div class="inner">
+                        {% if geneDiagramPath %}
+                        <img src="{% static geneDiagramPath %}" alt="{{searchedGene}} gene structure diagram">
+                        {% else %}
+                        <img src="{% static 'img/sub/ex-clinicalinfo-img.png' %}" alt="Example of clinical information">
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if geneSummary %}
+
+                <div class="graph-box-list" style="margin:0 0 40px;">
+                    <div class="row">
+                        <div class="graph-box">
+                            <span class="tit">Age at seizure onset</span>
+                            <div class="graph">
+                                {% if geneSummary.chart_onset_age %}
+                                <div id="chartSlOnsetAge"></div>
+                                {% else %}
+                                <div class="graph inner">No data</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="graph-box">
+                            <span class="tit">Age at last follow-up</span>
+                            <div class="graph">
+                                {% if geneSummary.chart_fu_age %}
+                                <div id="chartSlFuAge"></div>
+                                {% else %}
+                                <div class="graph inner">No data</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="graph-box">
+                            <span class="tit">Phenotype</span>
+                            <div class="graph">
+                                {% if geneSummary.chart_phenotype %}
+                                <div id="chartSlPhenotype"></div>
+                                {% else %}
+                                <div class="graph inner">No data</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="graph-box">
+                            <span class="tit">Publication link(PMID)</span>
+                            <div class="graph">
+                                {% if geneSummary.chart_pub_link %}
+                                <div id="chartSlPubLink"></div>
+                                {% else %}
+                                <div class="graph inner">No data</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <style>
+                    .xl-th { position: relative; gap: 4px; white-space: nowrap; }
+
+                    .sl-tbl .thead .row .col, .sl-tbl .tbody .row .accordion-head .col { flex: 0 0 auto; box-sizing: border-box; padding-left: 6px; padding-right: 6px; white-space: nowrap; }
+                    .sl-tbl .thead .row .col:nth-child(1), .sl-tbl .accordion-head .col:nth-child(1) { width: 16%; padding-left: 46px; }
+                    .sl-tbl .thead .row .col:nth-child(2), .sl-tbl .accordion-head .col:nth-child(2) { width: 7%; }
+                    .sl-tbl .thead .row .col:nth-child(3), .sl-tbl .accordion-head .col:nth-child(3) { width: 10%; }
+                    .sl-tbl .thead .row .col:nth-child(4), .sl-tbl .accordion-head .col:nth-child(4) { width: 11%; }
+                    .sl-tbl .thead .row .col:nth-child(5), .sl-tbl .accordion-head .col:nth-child(5) { width: 10%; }
+                    .sl-tbl .thead .row .col:nth-child(6), .sl-tbl .accordion-head .col:nth-child(6) { width: 11%; }
+                    .sl-tbl .thead .row .col:nth-child(7), .sl-tbl .accordion-head .col:nth-child(7) { width: 13%; }
+                    .sl-tbl .thead .row .col:nth-child(8), .sl-tbl .accordion-head .col:nth-child(8) { width: 13%; }
+                    .sl-tbl .thead .row .col:nth-child(9), .sl-tbl .accordion-head .col:nth-child(9) { width: 9%; }
+                    .ph-badge { display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 13px; font-weight: 700; color: #fff; background: #6b7280; }
+                    .ph-Dravet { background: #e5484d; } .ph-DEE { background: #8e4ec6; } .ph-Benign { background: #12a594; } .ph-GEFS { background: #e68a00; }
+                    .ph-Generalized { background: #3b82c4; } .ph-Other { background: #6b7280; } .ph-Noseizure { background: #98a2b3; }
+
+                    .sl-tbl .tbody .row .accordion-head .col:nth-child(4) { min-width: 0; }
+                    .sl-tbl .tbody .row .accordion-head .col:nth-child(4) > .vt { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+                    .xl-th .th-label { user-select: none; white-space: nowrap; }
+                    .xl-th .sort-arrow { font-size: 11px; color: #0068b9; }
+                    .xl-filter-btn {
+                        display: inline-block; margin-left: 4px; padding: 0 6px;
+                        font-size: 16px; font-weight: 700; color: #333; cursor: pointer;
+                        border-radius: 3px; line-height: 24px;
+                    }
+                    .xl-filter-btn:hover { background: #dde3ea; color: #111; }
+                    .xl-filter-btn.active { color: #fff; background: #0068b9; }
+                    .xl-filter-pop {
+                        display: none; position: absolute; top: 100%; left: 50%;
+                        transform: translateX(-50%); background: #fff; border: 1px solid #b9c2cc;
+                        box-shadow: 0 4px 14px rgba(0,0,0,0.18); border-radius: 4px; padding: 10px;
+                        z-index: 100; min-width: 170px; text-align: left; font-weight: 400;
+                    }
+                    .xl-filter-pop.open { display: block; }
+                    .xl-filter-pop[data-filter-panel="exp"] { left: auto; right: 0; transform: none; min-width: 230px; }
+                    .xl-filter-pop label {
+                        display: block; font-size: 13px; font-weight: 400; color: #333;
+                        padding: 3px 0; cursor: pointer; white-space: nowrap;
+                    }
+                    .xl-filter-pop input[type="radio"] { margin-right: 6px; }
+                    .xl-filter-text {
+                        width: 100%; box-sizing: border-box; padding: 5px 6px; font-size: 13px;
+                        border: 1px solid #ccc; border-radius: 3px; margin-bottom: 6px;
+                    }
+                    .xl-filter-actions {
+                        display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px;
+                        border-top: 1px solid #eee; padding-top: 8px;
+                    }
+                    .xl-filter-actions button {
+                        font-size: 12px; padding: 4px 10px; border-radius: 3px; cursor: pointer;
+                        border: 1px solid #0068b9; background: #0068b9; color: #fff;
+                    }
+                    .xl-filter-actions .xl-clear { background: #fff; color: #555; border-color: #ccc; }
+                </style>
+                <div class="accordian-tbl sl-tbl">
+                    <div class="thead">
+                        <div class="row">
+                            <span class="col sortable xl-th" data-field="sample">
+                                <span class="th-label">Sample</span><span class="sort-arrow"></span>
+                            </span>
+                            <span class="col sortable xl-th" data-field="genes">
+                                <span class="th-label">Genes</span><span class="sort-arrow"></span>
+                            </span>
+                            <span class="col sortable xl-th" data-field="mutation_type">
+                                <span class="th-label">Mutation Type</span><span class="sort-arrow"></span>
+                                <span class="xl-filter-btn {% if filter_mutation %}active{% endif %}" data-filter-for="mutation_type">▾</span>
+                                <div class="xl-filter-pop" data-filter-panel="mutation_type">
+                                    <label><input type="radio" name="xl_mutation_type" value="" {% if not filter_mutation %}checked{% endif %}> All</label>
+                                    <label><input type="radio" name="xl_mutation_type" value="Small mutation" {% if filter_mutation == 'Small mutation' %}checked{% endif %}> Point mutation</label>
+                                    <label><input type="radio" name="xl_mutation_type" value="Large CNV" {% if filter_mutation == 'Large CNV' %}checked{% endif %}> CNV</label>
+                                    <div class="xl-filter-actions">
+                                        <button type="button" class="xl-apply" data-hidden-target="filter_mutation" data-radio-group="xl_mutation_type">Apply</button>
+                                        <button type="button" class="xl-clear" data-hidden-target="filter_mutation">Clear</button>
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="col sortable xl-th" data-field="variant">
+                                <span class="th-label">Variants</span><span class="sort-arrow"></span>
+                                <span class="xl-filter-btn {% if filter_variant %}active{% endif %}" data-filter-for="variant">▾</span>
+                                <div class="xl-filter-pop" data-filter-panel="variant">
+                                    <input type="text" class="xl-filter-text" placeholder="Search..." value="{{filter_variant}}">
+                                    <div class="xl-filter-actions">
+                                        <button type="button" class="xl-apply" data-hidden-target="filter_variant" data-text-input="1">Apply</button>
+                                        <button type="button" class="xl-clear" data-hidden-target="filter_variant">Clear</button>
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="col xl-th" data-field="phenotype">
+                                <span class="th-label">Phenotype</span>
+                                <span class="xl-filter-btn {% if filter_phenotype %}active{% endif %}" data-filter-for="phenotype">▾</span>
+                                <div class="xl-filter-pop" data-filter-panel="phenotype">
+                                    <label><input type="radio" name="xl_phenotype" value="" {% if not filter_phenotype %}checked{% endif %}> All</label>
+                                    {% for full, short in phenotype_options %}<label title="{{ full }}"><input type="radio" name="xl_phenotype" value="{{ full }}" {% if filter_phenotype == full %}checked{% endif %}> {{ full }}</label>
+                                    {% endfor %}
+                                    <div class="xl-filter-actions">
+                                        <button type="button" class="xl-apply" data-hidden-target="filter_phenotype" data-radio-group="xl_phenotype">Apply</button>
+                                        <button type="button" class="xl-clear" data-hidden-target="filter_phenotype">Clear</button>
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="col">Clinical info</span>
+                            <span class="col sortable xl-th" data-field="protein3d">
+                                <span class="th-label">Protein 3D structure</span><span class="sort-arrow"></span>
+                                <span class="xl-filter-btn {% if filter_protein3d %}active{% endif %}" data-filter-for="protein3d">▾</span>
+                                <div class="xl-filter-pop" data-filter-panel="protein3d">
+                                    <label><input type="radio" name="xl_protein3d" value="" {% if not filter_protein3d %}checked{% endif %}> All</label>
+                                    <label><input type="radio" name="xl_protein3d" value="yes" {% if filter_protein3d == 'yes' %}checked{% endif %}> Yes</label>
+                                    <label><input type="radio" name="xl_protein3d" value="no" {% if filter_protein3d == 'no' %}checked{% endif %}> No</label>
+                                    <div class="xl-filter-actions">
+                                        <button type="button" class="xl-apply" data-hidden-target="filter_protein3d" data-radio-group="xl_protein3d">Apply</button>
+                                        <button type="button" class="xl-clear" data-hidden-target="filter_protein3d">Clear</button>
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="col xl-th" data-field="exp">
+                                <span class="th-label">Variant effects</span>
+                                <span class="xl-filter-btn {% if filter_exp %}active{% endif %}" data-filter-for="exp">▾</span>
+                                <div class="xl-filter-pop" data-filter-panel="exp">
+                                    <label><input type="radio" name="xl_exp" value="" {% if not filter_exp %}checked{% endif %}> All</label>
+                                    <label><input type="radio" name="xl_exp" value="yes" {% if filter_exp == 'yes' %}checked{% endif %}> With experimental functional evidence</label>
+                                    <div class="xl-filter-actions">
+                                        <button type="button" class="xl-apply" data-hidden-target="filter_exp" data-radio-group="xl_exp">Apply</button>
+                                        <button type="button" class="xl-clear" data-hidden-target="filter_exp">Clear</button>
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="col">Report</span>
+                        </div>
+                    </div>
+                    <div class="tbody">
+                        {% if resultEplpInfo %}
+                        {% for eplpInfoRecord in resultEplpInfo %}
+                        <div class="row">
+                            <div class="accordion-head">
+                                <span class="col"><span class="accordion-arr"></span><strong>{{eplpInfoRecord.patient_no}}</strong></span>
+                                <span class="col">{{eplpInfoRecord.gene_nm}}</span>
+                                <span class="col">{% if eplpInfoRecord.mutation_type == 'Small mutation' %}Point mutation{% elif eplpInfoRecord.mutation_type == 'Large CNV' %}CNV{% endif %}</span>
+                                <span class="col"><span class="vt" title="{% if eplpInfoRecord.vrat_info_letter %}{{eplpInfoRecord.vrat_info_letter}}{% else %}{{eplpInfoRecord.trnscr_nm}}{% endif %}">{% if eplpInfoRecord.vrat_info_letter %}{{eplpInfoRecord.vrat_info_letter}}{% else %}{{eplpInfoRecord.trnscr_nm}}{% endif %}</span></span>
+                                <span class="col">{% if eplpInfoRecord.pheno_short %}<span class="ph-badge ph-{{ eplpInfoRecord.pheno_short|cut:' '|cut:'+' }}" title="{{ eplpInfoRecord.pheno_group }}{% if eplpInfoRecord.pheno_orig %} — {{ eplpInfoRecord.pheno_orig }}{% endif %}">{{ eplpInfoRecord.pheno_short }}</span>{% else %}-{% endif %}</span>
+                                <span class="col">
+                                    <button type="button" class="btn btn-green" onclick="movePage('/clinicalInfo/{{eplpInfoRecord.eplp_anl_info_seq}}')">Show Clinical info</button>
+                                </span>
+                                <span class="col">
+                                    {% if eplpInfoRecord.pdb_retnt_yn == 'Y' %}
+                                        <button type="button" class="btn btn-blue" onclick="movePage('/prdctn_result/{{eplpInfoRecord.gene_nm}}/{{eplpInfoRecord.vrat_info_letter}}')">Show Protein 3D</button>
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </span>
+                                <span class="col">
+                                    <button type="button" class="btn btn-violet" onclick="movePage('/variantEffects/{{eplpInfoRecord.eplp_anl_info_seq}}')">Show Variant effects</button>
+                                </span>
+                                <span class="col">
+                                    <button type="button" class="btn btn-orange" onclick="movePage('/report/{{eplpInfoRecord.eplp_anl_info_seq}}')">Show Report</button>
+                                </span>
+                            </div>
+                            <div class="accordion-body">
+                                <div class="tbl-area">
+                                    <table class="tbl">
+                                        <caption>List table</caption>
+                                        <colgroup>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <col>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" colspan="4">Variant information</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Preferred name</th>
+                                                <td colspan="3">{{eplpInfoRecord.trnscr_nm}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Phenotype</th>
+                                                <td colspan="3">{% if eplpInfoRecord.pheno_label %}{{ eplpInfoRecord.pheno_label }}{% else %}-{% endif %}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" rowspan="3">Location</th>
+                                                <th scope="row">Cytogenetic</th>
+                                                <td colspan="2" class="txt-center">{{eplpInfoRecord.cytognt_lc}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" rowspan="2">Genomic</th>
+                                                <td class="txt-center">GRCh38</td>
+                                                <td class="txt-center">{% if eplpInfoRecord.grch38_chr %}Chr {{eplpInfoRecord.grch38_chr}}: {{eplpInfoRecord.grch38_lc|default_if_none:"-"}}{% endif %}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="txt-center">GRCh37</td>
+                                                <td class="txt-center">{% if eplpInfoRecord.grch37_chr %}Chr {{eplpInfoRecord.grch37_chr}}: {{eplpInfoRecord.grch37_lc|default_if_none:"-"}}{% endif %}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="paging_area" id="paging_area">
+
+                            <form id="pageData" action="{% url 'epilepsy:searchList' %}" name="pageData" method="GET">
+                                <input type="hidden" id="page_index" name="page" />
+                                <input type="hidden" id="totalSch" name="totalSch" value="{{totalSch}}"/>
+                                <input type="hidden" id="sort_by" name="sort_by" value="{{sort_by}}"/>
+                                <input type="hidden" id="sort_dir" name="sort_dir" value="{{sort_dir}}"/>
+                                <input type="hidden" id="filter_mutation" name="filter_mutation" value="{{filter_mutation}}"/>
+                                <input type="hidden" id="filter_variant" name="filter_variant" value="{{filter_variant}}"/>
+                                <input type="hidden" id="filter_protein3d" name="filter_protein3d" value="{{filter_protein3d}}"/>
+                                <input type="hidden" id="filter_exp" name="filter_exp" value="{{filter_exp}}"/>
+                                <input type="hidden" id="filter_phenotype" name="filter_phenotype" value="{{filter_phenotype}}"/>
+                                <button onclick="sendPageData(1)" class="page_Btn"><<</button>
+
+                                {% if resultEplpInfo.has_previous %}
+                                    <button onclick="sendPageData({{resultEplpInfo.previous_page_number}})" class="page_Btn"><</button>
+                                {% else %}
+                                    <button type="button" class="page_Btn"><</button>
+                                {% endif %}
+
+                                {% for page_number in mod5PageRange %}
+                                    {% if page_number == resultEplpInfo.number %}
+                                        <button onclick="sendPageData({{page_number}})" class="active page_Btn">{{page_number}}</button>
+                                    {% else %}
+                                        <button onclick="sendPageData({{page_number}})" class="page_Btn">{{page_number}}</button>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if resultEplpInfo.has_next %}
+                                    <button class="page-link page_Btn" onclick="sendPageData({{resultEplpInfo.next_page_number}})">></button>
+                                {% else %}
+                                    <button type="button" class="page_Btn">></button>
+                                {% endif %}
+
+                                <button onclick="sendPageData({{resultEplpInfo.end_index}})" class="page_Btn">>></button>
+                            </form>
+                        </div>
+                        {% else %}
+
+                        <form id="pageData" action="{% url 'epilepsy:searchList' %}" name="pageData" method="GET">
+                            <input type="hidden" id="page_index" name="page" />
+                            <input type="hidden" id="totalSch" name="totalSch" value="{{totalSch}}"/>
+                            <input type="hidden" id="sort_by" name="sort_by" value="{{sort_by}}"/>
+                            <input type="hidden" id="sort_dir" name="sort_dir" value="{{sort_dir}}"/>
+                            <input type="hidden" id="filter_mutation" name="filter_mutation" value="{{filter_mutation}}"/>
+                            <input type="hidden" id="filter_variant" name="filter_variant" value="{{filter_variant}}"/>
+                            <input type="hidden" id="filter_protein3d" name="filter_protein3d" value="{{filter_protein3d}}"/>
+                            <input type="hidden" id="filter_exp" name="filter_exp" value="{{filter_exp}}"/>
+                                <input type="hidden" id="filter_phenotype" name="filter_phenotype" value="{{filter_phenotype}}"/>
+                        </form>
+                        <h2 class="page-tit" id="nodata"><span>No Data</span></h2>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {% if geneSummary %}
+        {{ geneSummary.chart_onset_age|json_script:"sl-chart-onset-age" }}
+        {{ geneSummary.chart_fu_age|json_script:"sl-chart-fu-age" }}
+        {{ geneSummary.chart_phenotype|json_script:"sl-chart-phenotype" }}
+        {{ geneSummary.chart_pub_link|json_script:"sl-chart-pub-link" }}
+
+        <script src="{% static 'js/hichart/highcharts.js' %}"></script>
+        <script src="{% static 'js/hichart/hc_charts.js' %}?v=20261015i"></script>
+        <script src="{% static 'js/epilepsyClinicalChart.js' %}?v=20261016a"></script>
+        <script type="text/javascript">
+            const slReadJson = (id) => JSON.parse(document.getElementById(id).textContent);
+            window.addEventListener('load', () => {
+                drawSearchGeneSummary({
+                    chart_onset_age: slReadJson('sl-chart-onset-age'),
+                    chart_fu_age: slReadJson('sl-chart-fu-age'),
+                    chart_phenotype: slReadJson('sl-chart-phenotype'),
+                    chart_pub_link: slReadJson('sl-chart-pub-link'),
+                });
+            });
+        </script>
+        {% endif %}
+
+        <script type="text/javascript">
+
+            $('.tbody .row:first').addClass('active');
+            $('.tbody .row:first .accordion-body').show();
+
+            $('.accordion-arr').click(function() {
+                var $row = $(this).closest('.row');
+                $row.toggleClass('active');
+                $row.find('.accordion-body').slideToggle(200);
+
+                $('.row').not($row).removeClass('active').find('.accordion-body').slideUp(200);
+            });
+
+            const sendPageData = (pageIndex) => {
+                const pageForm = document.forms.pageData;
+                document.querySelector('#page_index').value = pageIndex;
+                pageForm.submit();
+            };
+
+            (function() {
+                const pageForm = document.forms.pageData;
+                if (!pageForm) { return; }
+                const curSortBy = document.querySelector('#sort_by').value;
+                const curSortDir = document.querySelector('#sort_dir').value;
+
+                const doSort = function(field) {
+                    const nextDir = (field === curSortBy && curSortDir === 'asc') ? 'desc' : 'asc';
+                    document.querySelector('#sort_by').value = field;
+                    document.querySelector('#sort_dir').value = nextDir;
+                    document.querySelector('#page_index').value = 1;
+                    pageForm.submit();
+                };
+
+                document.querySelectorAll('.sortable').forEach(function(col) {
+                    const field = col.dataset.field;
+                    if (field === curSortBy) {
+                        var arrow = col.querySelector('.sort-arrow');
+                        if (arrow) { arrow.textContent = curSortDir === 'desc' ? ' ▼' : ' ▲'; }
+                    }
+                    var label = col.querySelector('.th-label') || col;
+                    label.style.cursor = 'pointer';
+                    label.addEventListener('click', function() { doSort(field); });
+                    var arrowEl = col.querySelector('.sort-arrow');
+                    if (arrowEl) {
+                        arrowEl.style.cursor = 'pointer';
+                        arrowEl.addEventListener('click', function() { doSort(field); });
+                    }
+                });
+
+                function closeAllPanels(except) {
+                    document.querySelectorAll('.xl-filter-pop.open').forEach(function(p) {
+                        if (p !== except) { p.classList.remove('open'); }
+                    });
+                }
+
+                document.querySelectorAll('.xl-filter-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const name = btn.dataset.filterFor;
+                        const panel = document.querySelector('.xl-filter-pop[data-filter-panel="' + name + '"]');
+                        const isOpen = panel.classList.contains('open');
+                        closeAllPanels();
+                        if (!isOpen) { panel.classList.add('open'); }
+                    });
+                });
+
+                document.querySelectorAll('.xl-filter-pop').forEach(function(panel) {
+                    panel.addEventListener('click', function(e) { e.stopPropagation(); });
+                });
+
+                document.addEventListener('click', function() { closeAllPanels(); });
+
+                document.querySelectorAll('.xl-apply').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        const targetId = btn.dataset.hiddenTarget;
+                        let value = '';
+                        if (btn.dataset.radioGroup) {
+                            const checked = document.querySelector('input[name="' + btn.dataset.radioGroup + '"]:checked');
+                            value = checked ? checked.value : '';
+                        } else if (btn.dataset.textInput) {
+                            const input = btn.closest('.xl-filter-pop').querySelector('.xl-filter-text');
+                            value = input ? input.value.trim() : '';
+                        }
+                        document.querySelector('#' + targetId).value = value;
+                        document.querySelector('#page_index').value = 1;
+                        pageForm.submit();
+                    });
+                });
+
+                var vfIn = document.querySelector('.xl-filter-pop[data-filter-panel="variant"] .xl-filter-text');
+                if (vfIn) {
+                    var vfScript = document.createElement('script');
+                    vfScript.src = "{% static 'js/variantSuggest.js' %}?v=20261030";
+                    vfScript.onload = function() {
+                        variantSuggest(vfIn, {
+                            url: "{% url 'epilepsy:variant_suggest' %}", useValue: false, gene: function() { return "{{ searchedGene|default:'' }}"; },
+
+                            onPick: function() { var ap = vfIn.closest('.xl-filter-pop').querySelector('.xl-apply'); if (ap) { ap.click(); } }
+                        });
+                    };
+                    document.head.appendChild(vfScript);
+                }
+
+                document.querySelectorAll('.xl-clear').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        document.querySelector('#' + btn.dataset.hiddenTarget).value = '';
+                        document.querySelector('#page_index').value = 1;
+                        pageForm.submit();
+                    });
+                });
+            })();
+         </script>
+
+        {% endblock %}

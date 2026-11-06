@@ -1,0 +1,235 @@
+
+{% extends './layout/main_layout.html' %}
+{% load static %}
+
+       {% block script%}
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    // canvas background action
+                    const canvas = document.getElementById('embersCanvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+
+                    const embers = [];
+                    const emberCount = 200;
+
+                    // Ember particle settings
+                    const emberSettings = {
+                        maxSize: 4,
+                        minSize: 1,
+                        maxSpeed: 7,
+                        minSpeed: 0.5,
+                        color: '#A0E9FF', // Orange-red color with transparency
+                    };
+
+                    // Adjust canvas size on resize
+                    window.addEventListener('resize', () => {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    });
+
+                    // Ember particle class
+                    class Ember {
+                        constructor() {
+                            this.reset();
+                        }
+
+                        reset() {
+                            this.x = Math.random() * canvas.width;
+                            this.y = canvas.height + Math.random() * 100;
+                            this.size = emberSettings.minSize + Math.random() * (emberSettings.maxSize - emberSettings.minSize);
+                            this.speed = emberSettings.minSpeed + Math.random() * (emberSettings.maxSpeed - emberSettings.minSpeed);
+                            this.opacity = 1;
+                            this.fadeRate = Math.random() * 0.02 + 0.005;
+                            this.color = emberSettings.color;
+                        }
+
+                        update() {
+                            this.y -= this.speed;
+                            this.opacity -= this.fadeRate;
+                            if (this.opacity <= 0) {
+                                this.reset();
+                            }
+                        }
+
+                        draw() {
+                            ctx.beginPath();
+                            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                            ctx.fillStyle = this.color.replace('0.7', this.opacity.toFixed(2)); // Adjust opacity
+                            ctx.fill();
+                        }
+                    }
+
+                    // Create initial embers
+                    for (let i = 0; i < emberCount; i++) {
+                        embers.push(new Ember());
+                    }
+
+                    // Animation loop
+                    function animate() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                        embers.forEach(ember => {
+                            ember.update();
+                            ember.draw();
+                        });
+                        requestAnimationFrame(animate);
+                    }
+
+                    animate();
+                });
+
+                const goSearch = () => {
+                    if (totalSch.value === '') {
+                        alert('Please enter your search term');
+                        return false;
+                    }
+                }
+
+                const scnaButton = (tmpObj) => {
+                    totalSch.value = tmpObj.innerHTML;
+                    mainForm.submit();
+                };
+            </script>
+
+        {% endblock %}
+
+       {% block mainBanner%}
+        <div class="main-visual-area">
+           <canvas id="embersCanvas"></canvas>
+            <div class="main-visual-txt">
+                <strong>
+                    EPILOG<br/><span style="font-size:24px;">(EPILepsy solution On Genome data portal)</span>
+                </strong>
+
+                <span>Epilog occurs due to abnormal brain waves in the process of nerve cells in the brain being
+                    connected and exchanging information through microscopic electrical signals.</span>
+            </div>
+            <div class="main-sch-area">
+                <form name="mainForm" action="{% url 'epilepsy:searchList' %}" method="GET" onsubmit="return goSearch();">
+                    <fieldset>
+                        <legend>Search</legend>
+                        <div class="main-sch-input">
+                            <label for="" class="sr-only">Search</label>
+                            <input type="text" id="totalSch" name="totalSch" placeholder="ex.) SCN2A / M252V / p.Met252Val / c.754A>G">
+                            <button type="submit" class="btn btn-sch" title="Search" >Search</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <script src="{% static 'js/variantSuggest.js' %}?v=20261029"></script>
+                <script>
+
+                    variantSuggest(document.getElementById('totalSch'), { url: "{% url 'epilepsy:variant_suggest' %}", useValue: true });
+                </script>
+                <div class="label-area">
+                    <span class="label-set">
+
+                        <span class="label label01" style="pointer.cursor;" onclick="scnaButton(this)">SCN2A</span>
+                        <span class="label label02" style="pointer.cursor;" onclick="scnaButton(this)">SCN1A</span>
+                        <span class="label label07" style="pointer.cursor;" onclick="scnaButton(this)">SCN8A</span>
+                        <span class="label label03" style="pointer.cursor;" onclick="scnaButton(this)">KCNQ2</span>
+                        <span class="label label09" style="pointer.cursor;" onclick="scnaButton(this)">KCNT1</span>
+                        <span class="label label11" style="pointer.cursor;" onclick="scnaButton(this)">GABRA1</span>
+                        <span class="label label08" style="pointer.cursor;" onclick="scnaButton(this)">STXBP1</span>
+                        <span class="label label10" style="pointer.cursor;" onclick="scnaButton(this)">PCDH19</span>
+                        <span class="label label06" style="pointer.cursor;" onclick="scnaButton(this)">CDKL5</span>
+                        <span class="label label04" style="pointer.cursor;" onclick="scnaButton(this)">SYNGAP1</span>
+                        <span class="label label05" style="pointer.cursor;" onclick="scnaButton(this)">EEF1A2</span>
+                        <span class="label label12" style="pointer.cursor;" onclick="scnaButton(this)">FOXG1</span>
+                        <span class="label label13" style="pointer.cursor;" onclick="scnaButton(this)">SMC1A</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block mainContent%}
+
+        <div id="contents" class="sub">
+            <div class="cont-inner">
+                <h2 class="tit-h2">Summary ({{main_summary_total}} individuals)</h2>
+
+                <style>
+
+                    #divSummary .row { flex-wrap: nowrap; align-items: stretch; }
+                    #divSummary .row-main > .graph-box.bars { width: auto; flex: 3 1 0; height: auto; padding-bottom: 10px; }
+                    #divSummary .row-main > .graph-box.side { width: auto; flex: 1 1 0; height: auto; min-width: 0; display: flex; flex-direction: column; justify-content: space-around; padding-bottom: 10px; }
+                    #divSummary .side > .part > .tit { display: block; font-size: 14px; font-weight: bold; padding: 18px 0 5px; }
+                    #divSummary .side > .part > .graph { display: block; text-align: center; width: 100%; height: 229px; }
+                    #mainChartSex { width: 100%; height: 220px; }
+                    #divSummary .graph.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 0; height: auto; }
+                    #divSummary .graph.grid2 > .mini-chart { display: flex; flex-direction: column; height: 262px; min-width: 0; }
+                    #divSummary .graph.grid2 > .mini-chart > .mini-tit { display: block; font-size: 13.5px; font-weight: 700; color: #666; padding: 8px 0 0; }
+                    #divSummary .graph.grid2 > .mini-chart > div[id] { flex: 1 1 auto; min-height: 0; }
+                </style>
+                <div id="divSummary" class="graph-box-list">
+                    <div class="row row-main">
+                        <div class="graph-box bars">
+                            <span class="tit">&nbsp;</span>
+                            <div class="graph grid2">
+                                <div class="mini-chart">
+                                    <span class="mini-tit">Sample count by gene</span>
+                                    <div id="mainChartGene"></div>
+                                </div>
+                                <div class="mini-chart">
+                                    <span class="mini-tit">Sample count by age (months)</span>
+                                    <div id="mainChartAge"></div>
+                                </div>
+                                <div class="mini-chart">
+                                    <span class="mini-tit">Sample count by onset classification</span>
+                                    <div id="mainChartOnsetCl"></div>
+                                </div>
+
+                                <div class="mini-chart">
+                                    <span class="mini-tit">Sample count by phenotype group</span>
+                                    <div id="mainChartPheno"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph-box side">
+                            <div class="part">
+                                <span class="tit">Variant Summary</span>
+                                <div class="graph"><div id="mainChartdiv2"></div></div>
+                            </div>
+                            <div class="part">
+                                <span class="tit">Sex</span>
+                                <div class="graph"><div id="mainChartSex"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {{ chart_gene_counts|json_script:"dd-chart-gene-counts" }}
+        {{ chart_age_months|json_script:"dd-chart-age-months" }}
+        {{ chart_onset_cl|json_script:"dd-chart-onset-cl" }}
+        {{ chart_variant|json_script:"dd-chart-variant" }}
+        {{ chart_phenotype|json_script:"dd-chart-phenotype" }}
+        {{ chart_sex|json_script:"dd-chart-sex" }}
+
+        <script src="{% static 'js/hichart/highcharts.js' %}"></script>
+        <script src="{% static 'js/hichart/highcharts-more.js' %}"></script>
+        <script src="{% static 'js/hichart/hc_charts.js' %}?v=20261028b"></script>
+        <script src="{% static 'js/epilepsyClinicalChart.js' %}?v=20261028i"></script>
+        <script type="text/javascript">
+            const readJson = (id) => JSON.parse(document.getElementById(id).textContent);
+
+            const summaryData = {
+                chart_gene_counts: readJson('dd-chart-gene-counts'),
+                chart_age_months: readJson('dd-chart-age-months'),
+                chart_onset_cl: readJson('dd-chart-onset-cl'),
+                chart_variant: readJson('dd-chart-variant'),
+                chart_phenotype: readJson('dd-chart-phenotype'),
+                chart_sex: readJson('dd-chart-sex'),
+            };
+
+            window.addEventListener('load', () => {
+                drawSummary(summaryData);
+            });
+        </script>
+
+        {% endblock %}
+
